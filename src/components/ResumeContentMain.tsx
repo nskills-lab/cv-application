@@ -1,8 +1,9 @@
-import Header from './Header';
+import Header from './Title';
+import Title from './Title';
 export default function ResumeContentMain() {
   return (
     <div id="rc-main">
-      <Header></Header>
+      <Title></Title>
     </div>
   );
 }

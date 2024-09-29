@@ -4,11 +4,18 @@
   --main-border-radius: 0.5rem;
   --main-dark-color: #334155;
 }
+
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('ChakraPetch-Regular.ttf') format('truetype');
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  font-family: 'Chakra Petch';
 }
 
 #root {
@@ -54,10 +61,21 @@ body {
   background-color: #f8fafc;
 }
 
-#header {
+#title {
   background-color: var(--main-yellow-color);
+  height: 90px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+}
+
+#title-full-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+#title-position {
+  font-size: 0.9rem;
+  font-style: italic;
 }
