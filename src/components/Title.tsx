@@ -1,7 +1,7 @@
 import { useState } from 'react';
 export default function Title() {
   const [name, setName] = useState('Zaphod Beeblebrox');
-  const [title, setTitle] = useState('The President of the Galaxy');
+  const [title, setTitle] = useState('Ex-Galactic President');
 
   return (
     <div id="title">
