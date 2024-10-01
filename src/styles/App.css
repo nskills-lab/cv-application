@@ -1,8 +1,8 @@
 :root {
-  --main-yellow-color: #fcd34d;
-  --main-box-shadow: #030712 0px 13px 27px -5px, #fed7aa 1px 8px 16px -8px;
+  --main-yellow-color: rgba(244, 231, 94, 0.9);
+  --main-box-shadow: #030712 0px 13px 27px -5px, #fde047 1px 8px 16px -8px;
   --main-border-radius: 0.5rem;
-  --main-dark-color: #334155;
+  --main-dark-color: #262626;
 }
 
 @font-face {
@@ -21,7 +21,7 @@ body {
 #root {
   display: flex;
   align-items: stretch;
-  background-color: bisque;
+  background-color: #f8fafc;
 }
 
 #resume-form {
@@ -31,12 +31,14 @@ body {
 }
 
 #resume-container {
+  margin: 10px;
   width: 65%;
   height: 100vh;
   background-color: #f8fafc;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: var(--main-border-radius);
 }
 
 #resume-content {
@@ -47,23 +49,49 @@ body {
   align-items: stretch;
   box-shadow: var(--main-box-shadow);
   color: var(--main-dark-color);
+  border-radius: var(--main-border-radius);
 }
 
 #rc-sidebar {
   height: 95vh;
-  width: 35%;
+  width: 30%;
   background-color: var(--main-dark-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#contact-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--main-yellow-color);
+  font-size: 0.8rem;
+  height: 30%;
+}
+
+ul > li {
+  list-style: none;
+}
+li > img {
+  margin-right: 1rem;
+  padding: 0;
+  width: 20px;
+  height: 20px;
 }
 
 #rc-main {
   height: 95vh;
-  width: 65%;
+  width: 70%;
   background-color: #f8fafc;
 }
 
 #title {
+  margin-top: 50px;
+  margin-left: -60px;
   background-color: var(--main-yellow-color);
-  height: 90px;
+  width: 100%;
+  height: 100px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -71,11 +99,29 @@ body {
 }
 
 #title-full-name {
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   font-weight: bold;
 }
 
 #title-position {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-style: italic;
+}
+
+#experience {
+  margin: 20px;
+  width: 90%;
+  height: 80%;
+}
+
+#divider {
+  width: 85%;
+  height: 3px;
+  background-color: var(--main-yellow-color);
+  margin-top: 5px;
+}
+
+#exp-section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
 }

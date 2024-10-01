@@ -1,7 +1,8 @@
 import ContactInfo from './ContactInfo';
-export default function ResumeContentSideBar() {
+
+export default function ResumeSideBar() {
   return (
-    <div id="rc-sidebar">
+    <div>
       <ContactInfo></ContactInfo>
     </div>
   );
