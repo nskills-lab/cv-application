@@ -2,7 +2,7 @@
   --main-yellow-color: rgba(244, 231, 94, 0.9);
   --main-box-shadow: #030712 0px 13px 27px -5px, #fde047 1px 8px 16px -8px;
   --main-border-radius: 0.5rem;
-  --main-dark-color: #262626;
+  --main-dark-color: #020617;
 }
 
 @font-face {
@@ -99,14 +99,14 @@ li > img {
   margin-bottom: 5px;
 }
 
-#degree-name,
-#institute-name,
-#years-of-study {
+[data-edu-degree-name],
+[data-edu-institute-name],
+[data-edu-years-of-study] {
   font-size: 0.8rem;
   margin-bottom: 5px;
 }
 
-#degree-name {
+[data-edu-degree-name] {
   margin-top: 9px;
 }
 
@@ -138,7 +138,7 @@ li > img {
   font-style: italic;
 }
 
-#experience {
+#experience-container {
   margin: 20px;
   width: 90%;
   height: 80%;
@@ -149,9 +149,36 @@ li > img {
   height: 3px;
   background-color: var(--main-yellow-color);
   margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 #exp-section-title {
   font-size: 1.2rem;
   font-weight: bold;
+}
+
+[data-exp-position] {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+[data-exp] {
+  margin-left: 10px;
+  margin-top: 15px;
+  width: 85%;
+}
+
+[data-exp-desc],
+[data-exp-company],
+[data-exp-date] {
+  font-size: 0.9rem;
+}
+
+[data-exp-position] {
+  margin-bottom: 10px;
+}
+
+#experience-content {
+  display: flex;
+  flex-direction: column;
 }
