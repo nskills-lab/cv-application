@@ -3,11 +3,13 @@
   --main-box-shadow: #030712 0px 13px 27px -5px, #fde047 1px 8px 16px -8px;
   --main-border-radius: 0.5rem;
   --main-dark-color: #020617;
+  --main-light-color: #fffbeb;
+  --main-bg-color: #f1f5f9;
 }
 
 @font-face {
-  font-family: 'Chakra Petch';
-  src: url('ChakraPetch-Regular.ttf') format('truetype');
+  font-family: 'QS';
+  src: url('./assets//Quicksand-VariableFont_wght.ttf') format('truetype');
 }
 
 body {
@@ -15,26 +17,47 @@ body {
   box-sizing: border-box;
   width: 100vw;
   height: 100vh;
-  font-family: 'Chakra Petch';
+  font-family: 'QS';
+  background-color: var(--main-bg-color);
 }
 
 #root {
   display: flex;
   align-items: stretch;
-  background-color: #f8fafc;
+}
+
+#resume-form-container {
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #resume-form {
-  width: 40%;
-  height: 100vh;
-  background-color: cadetblue;
+  margin: 10px;
+  height: 80vh;
+  width: 500px;
+  box-shadow: var(--main-box-shadow);
+  background-color: var(--main-light-color);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--main-border-radius);
+}
+
+#form-title {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 #resume-container {
   margin: 10px;
   width: 65%;
   height: 100vh;
-  background-color: #f8fafc;
+  background-color: var(--main-bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +66,7 @@ body {
 
 #resume-content {
   height: 95vh;
-  min-width: 850px;
+  width: 750px;
   background-color: grey;
   display: flex;
   align-items: stretch;
@@ -59,7 +82,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: white;
+  color: var(--main-light-color);
 }
 
 #contact-info {
@@ -113,13 +136,11 @@ li > img {
 #rc-main {
   height: 95vh;
   width: 70%;
-  background-color: #f8fafc;
+  background-color: var(--main-light-color);
 }
 
 #title {
-  margin-top: 50px;
-  margin-left: -60px;
-  background-color: var(--main-yellow-color);
+  margin-top: 30px;
   width: 100%;
   height: 100px;
   display: flex;
@@ -139,7 +160,8 @@ li > img {
 }
 
 #experience-container {
-  margin: 20px;
+  margin-top: 40px;
+  margin-left: 20px;
   width: 90%;
   height: 80%;
 }
@@ -169,13 +191,21 @@ li > img {
 }
 
 [data-exp-desc],
-[data-exp-company],
-[data-exp-date] {
+[data-exp-company] {
   font-size: 0.9rem;
 }
 
-[data-exp-position] {
-  margin-bottom: 10px;
+[data-exp-date] {
+  font-size: 0.8rem;
+}
+
+[data-exp-desc] {
+  margin-top: 10px;
+}
+
+[data-exp-position-date] {
+  display: flex;
+  justify-content: space-between;
 }
 
 #experience-content {

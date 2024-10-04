@@ -2,7 +2,7 @@ import { useState } from 'react';
 import defaultExperience from '../data/default.json';
 export default function Experience() {
   const [date, setDates] = useState('Feb 2022 - Present');
-  const [company, setCompany] = useState('Janx Spirit');
+  const [company, setCompany] = useState('Janx Spirit Inc.');
   const [address, setAddress] = useState(
     '123 Main st, Nowhere, Anywhere 98765'
   );
@@ -17,21 +17,31 @@ export default function Experience() {
       <div className="divider"></div>
       <div id="experience-content">
         <div data-exp>
-          <div data-exp-date>{date}</div>
-          <div data-exp-company>
-            {company} | {address}
+          <div data-exp-position-date>
             <div data-exp-position>{position}</div>
+            <div data-exp-date>{date}</div>
           </div>
+          <div data-exp-company>{company}</div>
           <div data-exp-desc>{roleDesc}</div>
         </div>
         <br />
         <br />
         <div data-exp>
-          <div data-exp-date>{date}</div>
-          <div data-exp-company>
-            {company} | {address}
+          <div data-exp-position-date>
+            <div data-exp-position>{position}</div>
+            <div data-exp-date>{date}</div>
           </div>
-          <div data-exp-position>{position}</div>
+          <div data-exp-company>{company}</div>
+          <div data-exp-desc>{roleDesc}</div>
+        </div>
+        <br />
+        <br />
+        <div data-exp>
+          <div data-exp-position-date>
+            <div data-exp-position>{position}</div>
+            <div data-exp-date>{date}</div>
+          </div>
+          <div data-exp-company>{company}</div>
           <div data-exp-desc>{roleDesc}</div>
         </div>
       </div>
