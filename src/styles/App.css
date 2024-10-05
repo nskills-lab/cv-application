@@ -1,10 +1,10 @@
 :root {
   --main-yellow-color: rgba(244, 231, 94, 0.9);
   --main-box-shadow: #030712 0px 13px 27px -5px, #fde047 1px 8px 16px -8px;
-  --main-border-radius: 0.5rem;
+  --main-border-radius: 0.7rem;
   --main-dark-color: #020617;
   --main-light-color: #fffbeb;
-  --main-bg-color: #f1f5f9;
+  --main-bg-color: #f8fafc;
 }
 
 @font-face {
@@ -23,60 +23,55 @@ body {
 
 #root {
   display: flex;
-  align-items: stretch;
-}
-
-#resume-form-container {
-  width: 40%;
-  height: 100vh;
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  height: 100vh;
 }
 
-#resume-form {
-  margin: 10px;
-  height: 80vh;
-  width: 500px;
-  box-shadow: var(--main-box-shadow);
-  background-color: var(--main-light-color);
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--main-border-radius);
-}
-
-#form-title {
-  margin-top: 20px;
+#app-name {
+  height: 50px;
+  width: 100vw;
+  background-color: #f8fafc;
+  box-shadow: 0 4px 4px -1px #d1d5db;
+  border-width: 3px;
+  border-bottom-color: #94a3b8;
+  border-bottom-style: thin;
   font-size: 1.5rem;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+#app-name > img {
+  margin-left: 30px;
+  width: 35px;
+  height: 35px;
 }
 
 #resume-container {
-  margin: 10px;
-  width: 65%;
-  height: 100vh;
+  width: 700px;
+  height: 850px;
   background-color: var(--main-bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--main-border-radius);
 }
 
 #resume-content {
-  height: 95vh;
+  height: 850px;
   width: 750px;
   background-color: grey;
   display: flex;
   align-items: stretch;
   box-shadow: var(--main-box-shadow);
   color: var(--main-dark-color);
-  border-radius: var(--main-border-radius);
 }
 
 #rc-sidebar {
-  height: 95vh;
+  height: 850px;
   width: 30%;
   background-color: var(--main-dark-color);
   display: flex;
@@ -90,7 +85,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   height: 30%;
 }
 
@@ -103,8 +98,8 @@ ul > li {
 
 li > img {
   margin-right: 8px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
 }
 
 #education {
@@ -125,7 +120,7 @@ li > img {
 [data-edu-degree-name],
 [data-edu-institute-name],
 [data-edu-years-of-study] {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin-bottom: 5px;
 }
 
@@ -134,7 +129,7 @@ li > img {
 }
 
 #rc-main {
-  height: 95vh;
+  height: 850px;
   width: 70%;
   background-color: var(--main-light-color);
 }
@@ -211,4 +206,25 @@ li > img {
 #experience-content {
   display: flex;
   flex-direction: column;
+}
+
+#edit-button {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  top: 100px;
+  right: 500px;
+}
+
+#edit-button:hover {
+  cursor: pointer;
+  background-color: #d1d5db;
+  border-radius: var(--main-border-radius);
+  border: 3px thin #94a3b8;
+  box-shadow: var(--main-box-shadow);
+}
+
+#edit-button:hover .tooltip:before {
+  content: 'Edit';
+  background-color: var(--main-bg-color);
 }

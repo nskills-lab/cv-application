@@ -1,14 +1,18 @@
 import './styles/normalize.css';
 import './styles/App.css';
-import ResumeForm from './components/ResumeForm';
 import { ResumeContent } from './components/ResumeContent';
-import CVGenerator from './components/CVGenerator';
+import logo from './styles/assets/icons/icons8-resume-48.png';
+import { EditResumeButton } from './components/EditResumeButton';
 
 function App() {
   return (
     <>
-      <ResumeForm></ResumeForm>
+      <div id="app-name">
+        <img src={logo} alt="" />
+        <span>cv builder </span>
+      </div>
       <ResumeContent></ResumeContent>
+      <EditResumeButton></EditResumeButton>
     </>
   );
 }

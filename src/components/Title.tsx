@@ -3,6 +3,8 @@ export default function Title() {
   const [name, setName] = useState('Zaphod Beeblebrox');
   const [title, setTitle] = useState('Ex-Galactic President');
 
+  function enableTitleEdit() {}
+
   return (
     <div id="title">
       <div id="title-full-name">{name}</div>
