@@ -1,10 +1,11 @@
 :root {
   --main-yellow-color: rgba(244, 231, 94, 0.9);
   --main-box-shadow: #030712 0px 13px 27px -5px, #fde047 1px 8px 16px -8px;
-  --main-border-radius: 0.7rem;
+  --main-border-radius: 0.4rem;
   --main-dark-color: #020617;
   --main-light-color: #fffbeb;
   --main-bg-color: #f8fafc;
+  --transparent-dark: rgba(0, 0, 0, 0.75);
 }
 
 @font-face {
@@ -14,19 +15,23 @@
 
 body {
   margin: 0;
-  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
+  box-sizing: border-box;
   font-family: 'QS';
   background-color: var(--main-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #root {
+  margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  width: 100vw;
   height: 100vh;
 }
 
@@ -42,7 +47,9 @@ body {
   font-weight: bold;
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  z-index: 2;
 }
 
 #app-name > img {
@@ -52,26 +59,30 @@ body {
 }
 
 #resume-container {
-  width: 700px;
-  height: 850px;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: var(--main-bg-color);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  overflow-y: auto;
+  gap: 100px;
 }
 
 #resume-content {
-  height: 850px;
-  width: 750px;
+  margin-top: 10px;
+  margin-right: 50px;
+  height: 110%;
+  width: 700px;
   background-color: grey;
   display: flex;
-  align-items: stretch;
   box-shadow: var(--main-box-shadow);
   color: var(--main-dark-color);
+  margin-bottom: 20px;
 }
 
 #rc-sidebar {
-  height: 850px;
+  height: 100%;
   width: 30%;
   background-color: var(--main-dark-color);
   display: flex;
@@ -129,7 +140,7 @@ li > img {
 }
 
 #rc-main {
-  height: 850px;
+  height: 100%;
   width: 70%;
   background-color: var(--main-light-color);
 }
@@ -208,23 +219,46 @@ li > img {
   flex-direction: column;
 }
 
-#edit-button {
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  top: 100px;
-  right: 500px;
+#resume-form-container {
+  width: 35%;
+  height: 110%;
+  box-shadow: 0 0 10px #d1d5db;
+  border-right-width: 4px;
+  border-right-color: #94a3b8;
+  border-right-style: thin;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  overflow-y: auto;
 }
 
-#edit-button:hover {
-  cursor: pointer;
-  background-color: #d1d5db;
-  border-radius: var(--main-border-radius);
-  border: 3px thin #94a3b8;
-  box-shadow: var(--main-box-shadow);
+#resume-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
-#edit-button:hover .tooltip:before {
-  content: 'Edit';
-  background-color: var(--main-bg-color);
+#form-title,
+#form-contact,
+#form-education,
+#form-experience {
+  width: 80%;
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+#resume-form legend {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#resume-form legend ~ * {
+  font-size: 0.9rem;
+}
+
+#resume-form input {
+  margin-bottom: 5px;
 }
