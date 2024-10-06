@@ -262,3 +262,7 @@ li > img {
 #resume-form input {
   margin-bottom: 5px;
 }
+
+textarea {
+  resize: none;
+}

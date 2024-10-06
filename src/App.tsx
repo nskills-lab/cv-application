@@ -1,13 +1,13 @@
 import './styles/normalize.css';
 import './styles/App.css';
-import ResumeContent from './components/ResumeContent';
-import Header from './components/Header';
+import ResumeBuilder from './components/ResumeBuilder';
+import AppHeader from './components/AppHeader';
 
 function App() {
   return (
     <>
-      <Header></Header>
-      <ResumeContent></ResumeContent>
+      <AppHeader></AppHeader>
+      <ResumeBuilder></ResumeBuilder>
     </>
   );
 }

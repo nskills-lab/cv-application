@@ -1,4 +1,4 @@
-export default function ResumeForm() {
+export default function Form() {
   return (
     <div id="resume-form-container">
       <form id="resume-form">
@@ -57,8 +57,15 @@ export default function ResumeForm() {
           <input type="date" id="date-end-exp" />
 
           <label htmlFor="job-desc">Responsibilities </label>
-          <textarea id="job-desc" maxLength={500} />
+          <textarea id="job-desc" maxLength={500} cols={50} rows={10} />
+          <div>
+            <button>Add</button>
+          </div>
         </fieldset>
+        <div>
+          <button>Reset</button>
+          <button>Save</button>
+        </div>
       </form>
     </div>
   );
