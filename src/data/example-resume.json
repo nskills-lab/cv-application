@@ -8,7 +8,10 @@
     "institute": "Betelgeusian University",
     "yearsOfStudy": "0000 - 9999"
   },
-
+  "contacts": {
+    "phone": "+000 - 000 - 0000",
+    "email": "president@galaxy.universe"
+  },
   "experience": [
     {
       "date": "Feb 2022 - Present",
