@@ -1,16 +1,16 @@
 import ContactInfo from './ContactInfo';
-import Education from './Education';
-import Title from './Title';
+import EducationSection from './EducationSection';
 import Experience from './Experience';
+import TitleSection from './TitleSection';
 export default function Resume() {
   return (
     <div id="resume-content">
       <div id="rc-sidebar">
         <ContactInfo></ContactInfo>
-        <Education></Education>
+        <EducationSection></EducationSection>
       </div>
       <div id="rc-main">
-        <Title></Title>
+        <TitleSection></TitleSection>
         <Experience></Experience>
       </div>
     </div>

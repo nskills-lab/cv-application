@@ -1,4 +1,14 @@
 {
+  "title": {
+    "name": "Zaphod Beeblebrox",
+    "position": "Ex-Galactic President :)"
+  },
+  "education": {
+    "degree": "Masters in Confidence Trickste",
+    "institute": "Betelgeusian University",
+    "yearsOfStudy": "0000 - 9999"
+  },
+
   "experience": [
     {
       "date": "Feb 2022 - Present",
