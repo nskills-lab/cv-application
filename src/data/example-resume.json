@@ -12,20 +12,11 @@
     "phone": "+000 - 000 - 0000",
     "email": "president@galaxy.universe"
   },
-  "experience": [
-    {
-      "date": "Feb 2022 - Present",
-      "company": "Janx Spirit",
-      "address": "123 Upside st, Nowhere, Anywhere 1010101",
-      "position": "Inventor",
-      "desc": "Zaphod Beeblebrox, adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, often thought to be completely out to lunch."
-    },
-    {
-      "date": "May 1900 - Present",
-      "company": "Heart of Gold",
-      "address": "Space",
-      "position": "Amateur pilot",
-      "desc": "I’m so great even I get tongue-tied talking to myself."
-    }
-  ]
+  "experience": {
+    "date": "Feb 2022 - Present",
+    "company": "Janx Spirit",
+    "address": "123 Upside st, Nowhere, Anywhere 1010101",
+    "position": "Inventor",
+    "desc": "Zaphod Beeblebrox, adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, often thought to be completely out to lunch."
+  }
 }

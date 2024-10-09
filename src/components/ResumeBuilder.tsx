@@ -20,10 +20,10 @@ export default function ResumeBuilder() {
   const [phone, setPhone] = useState(example.contacts.phone);
   const [email, setEmail] = useState(example.contacts.email);
 
-  const [dates, setDates] = useState(example.experience[0].date);
-  const [company, setCompany] = useState(example.experience[0].company);
-  const [position, setPosition] = useState(example.experience[0].position);
-  const [roleDesc, setDesc] = useState(example.experience[0].desc);
+  const [dates, setDates] = useState(example.experience.date);
+  const [company, setCompany] = useState(example.experience.company);
+  const [position, setPosition] = useState(example.experience.position);
+  const [roleDesc, setDesc] = useState(example.experience.desc);
 
   const title: Title = {
     name: name,

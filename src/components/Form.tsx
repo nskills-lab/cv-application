@@ -1,8 +1,8 @@
 export default function Form() {
   return (
     <div id="resume-form-container">
-      <form id="resume-form">
-        <fieldset id="form-title">
+      <form data-form="title-form">
+        <fieldset data-fieldset="title">
           <legend>Title</legend>
 
           <label htmlFor="first_name">First Name </label>
@@ -14,8 +14,9 @@ export default function Form() {
           <label htmlFor="position">Position </label>
           <input type="text" id="position" />
         </fieldset>
-
-        <fieldset id="form-contact">
+      </form>
+      <form data-form="contact-form">
+        <fieldset data-fieldset="contact">
           <legend>Contact Info</legend>
 
           <label htmlFor="phone">Phone </label>
@@ -24,8 +25,9 @@ export default function Form() {
           <label htmlFor="email">Email </label>
           <input type="email" id="email" />
         </fieldset>
-
-        <fieldset id="form-education">
+      </form>
+      <form data-form="education-form">
+        <fieldset data-fieldset="education">
           <legend>Educational Background </legend>
 
           <label htmlFor="degree">Field of Study </label>
@@ -40,8 +42,9 @@ export default function Form() {
           <label htmlFor="date-end">End </label>
           <input type="date" id="date-end" />
         </fieldset>
-
-        <fieldset id="form-experience">
+      </form>
+      <form data-form="experience-form">
+        <fieldset data-fieldset="experience">
           <legend>Experience </legend>
 
           <label htmlFor="job-position">Job Position </label>
@@ -62,10 +65,6 @@ export default function Form() {
             <button>Add</button>
           </div>
         </fieldset>
-        <div>
-          <button>Reset</button>
-          <button>Save</button>
-        </div>
       </form>
     </div>
   );

@@ -228,11 +228,12 @@ li > img {
   border-right-style: thin;
   border-bottom: none;
   display: flex;
+  flex-direction: column;
   align-items: center;
   overflow-y: auto;
 }
 
-#resume-form {
+[data-form] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,29 +241,42 @@ li > img {
   width: 100%;
 }
 
-#form-title,
-#form-contact,
-#form-education,
-#form-experience {
+[data-form] > * {
+  /* background-color: #d4d4d8; */
+}
+[data-fieldset] {
   width: 80%;
   margin-top: 15px;
   display: flex;
   flex-direction: column;
+  border-radius: var(--main-border-radius);
+  border-width: thin;
+  border-color: #cbd5e1;
 }
 
-#resume-form legend {
+[data-form] legend {
   font-weight: bold;
-  font-size: 1.2rem;
+  padding: 10px;
 }
 
-#resume-form legend ~ * {
+[data-form] legend ~ * {
   font-size: 0.9rem;
 }
 
-#resume-form input {
+[data-form] input {
   margin-bottom: 5px;
+  height: 28px;
+  border-radius: var(--main-border-radius);
+  border-width: thin;
+  border-color: #cbd5e1;
+}
+
+[data-form] input:focus {
+  outline: none;
 }
 
 textarea {
   resize: none;
+  border-radius: var(--main-border-radius);
+  border-width: thin;
 }
