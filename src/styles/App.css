@@ -3,9 +3,13 @@
   --main-box-shadow: #030712 0px 13px 27px -5px, #fde047 1px 8px 16px -8px;
   --main-border-radius: 0.4rem;
   --main-dark-color: #020617;
-  --main-light-color: #fffbeb;
-  --main-bg-color: #f8fafc;
+  --light-color-1: #fffbeb;
+  --light-color-2: #d1d5db;
+  --light-color-3: #f8fafc;
   --transparent-dark: rgba(0, 0, 0, 0.75);
+  --border-color-1: #94a3b8;
+  --border-color-2: #cbd5e1;
+  --box-shadow-color-1: #9ca3af;
 }
 
 @font-face {
@@ -19,7 +23,7 @@ body {
   height: 100vh;
   box-sizing: border-box;
   font-family: 'QS';
-  background-color: var(--main-bg-color);
+  background-color: var(--light-color-3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,16 +42,16 @@ body {
 #app-name {
   height: 50px;
   width: 100vw;
-  background-color: #f8fafc;
-  box-shadow: 0 4px 4px -1px #d1d5db;
+  background-color: var(--light-color-3);
+  box-shadow: 0 1px 3px 1px var(--box-shadow-color-1);
   border-width: 3px;
-  border-bottom-color: #94a3b8;
+  border-bottom-color: var(--border-color-1);
   border-bottom-style: thin;
   font-size: 1.5rem;
   font-weight: bold;
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding-bottom: 5px;
   z-index: 2;
 }
@@ -62,7 +66,7 @@ body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background-color: var(--main-bg-color);
+  background-color: var(--light-color-3);
   display: flex;
   align-items: stretch;
   overflow-y: auto;
@@ -74,7 +78,6 @@ body {
   margin-right: 50px;
   height: 110%;
   width: 700px;
-  background-color: grey;
   display: flex;
   box-shadow: var(--main-box-shadow);
   color: var(--main-dark-color);
@@ -88,7 +91,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--main-light-color);
+  color: var(--light-color-1);
 }
 
 #contact-info {
@@ -142,7 +145,7 @@ li > img {
 #rc-main {
   height: 100%;
   width: 70%;
-  background-color: var(--main-light-color);
+  background-color: var(--light-color-1);
 }
 
 #title {
@@ -221,10 +224,10 @@ li > img {
 
 #resume-form-container {
   width: 35%;
-  height: 110%;
-  box-shadow: 0 0 10px #d1d5db;
+  height: 120%;
+  box-shadow: 3px 0 7px var(--box-shadow-color-1);
   border-right-width: 4px;
-  border-right-color: #94a3b8;
+  border-right-color: var(--border-color-1);
   border-right-style: thin;
   border-bottom: none;
   display: flex;
@@ -241,9 +244,14 @@ li > img {
   width: 100%;
 }
 
+[data-form='experience-form'] {
+  margin-bottom: 40px;
+}
+
 [data-form] > * {
   /* background-color: #d4d4d8; */
 }
+
 [data-fieldset] {
   width: 80%;
   margin-top: 15px;
@@ -251,7 +259,7 @@ li > img {
   flex-direction: column;
   border-radius: var(--main-border-radius);
   border-width: thin;
-  border-color: #cbd5e1;
+  border-color: var(--border-color-2);
 }
 
 [data-form] legend {
@@ -268,7 +276,7 @@ li > img {
   height: 28px;
   border-radius: var(--main-border-radius);
   border-width: thin;
-  border-color: #cbd5e1;
+  border-color: var(--border-color-2);
 }
 
 [data-form] input:focus {

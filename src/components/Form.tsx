@@ -6,7 +6,7 @@ export default function Form() {
           <legend>Title</legend>
 
           <label htmlFor="first_name">First Name </label>
-          <input type="text" id="first_name" />
+          <input type="text" id="first_name" onChange={(e) => e.target.value} />
 
           <label htmlFor="last_name">Last Name </label>
           <input type="text" id="last_name" />
@@ -41,6 +41,11 @@ export default function Form() {
 
           <label htmlFor="date-end">End </label>
           <input type="date" id="date-end" />
+          <br />
+          <div>
+            <button>Add</button>
+            <button>Delete</button>
+          </div>
         </fieldset>
       </form>
       <form data-form="experience-form">
@@ -61,8 +66,10 @@ export default function Form() {
 
           <label htmlFor="job-desc">Responsibilities </label>
           <textarea id="job-desc" maxLength={500} cols={50} rows={10} />
+          <br />
           <div>
             <button>Add</button>
+            <button>Delete</button>
           </div>
         </fieldset>
       </form>
