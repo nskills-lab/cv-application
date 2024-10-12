@@ -1,20 +1,12 @@
-export default function Form() {
+import TitleForm from './heading/TitleForm';
+export default function Form({ title, handleTitleChanges }) {
   return (
     <div id="resume-form-container">
-      <form data-form="title-form">
-        <fieldset data-fieldset="title">
-          <legend>Title</legend>
-
-          <label htmlFor="first_name">First Name </label>
-          <input type="text" id="first_name" onChange={(e) => e.target.value} />
-
-          <label htmlFor="last_name">Last Name </label>
-          <input type="text" id="last_name" />
-
-          <label htmlFor="position">Position </label>
-          <input type="text" id="position" />
-        </fieldset>
-      </form>
+      <TitleForm
+        name={title.name}
+        titlePosition={title.titlePosition}
+        onChange={handleTitleChanges}
+      ></TitleForm>
       <form data-form="contact-form">
         <fieldset data-fieldset="contact">
           <legend>Contact Info</legend>
