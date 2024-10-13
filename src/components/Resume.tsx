@@ -24,7 +24,8 @@ export default function Resume({
           <Education
             degree={education.degree}
             institute={education.institute}
-            yearsOfStudy={education.yearsOfStudy}
+            dateStart={education.dateStart}
+            dateEnd={education.dateEnd}
           ></Education>
         </EducationSection>
       </div>

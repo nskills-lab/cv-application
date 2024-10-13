@@ -5,8 +5,6 @@ export default function ExperienceSection({ children }) {
       <div className="divider"></div>
       <div id="experience-content">
         <>{children}</>
-        <br />
-        <br />
       </div>
     </div>
   );

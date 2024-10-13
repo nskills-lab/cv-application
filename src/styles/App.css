@@ -108,6 +108,7 @@ ul {
 }
 ul > li {
   list-style: none;
+  word-wrap: break-word;
 }
 
 li > img {

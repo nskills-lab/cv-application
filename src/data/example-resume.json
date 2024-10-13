@@ -4,9 +4,10 @@
     "position": "Ex-Galactic President :)"
   },
   "education": {
-    "degree": "Masters in Confidence Trickste",
+    "degree": "Masters in Confidence Trickster",
     "institute": "Betelgeusian University",
-    "yearsOfStudy": "0000 - 9999"
+    "dateStart": 1901,
+    "dateEnd": 1999
   },
   "contacts": {
     "phone": "+000 - 000 - 0000",
