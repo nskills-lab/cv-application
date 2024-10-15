@@ -14,7 +14,8 @@
     "email": "president@galaxy.universe"
   },
   "experience": {
-    "date": "Feb 2022 - Present",
+    "dateStart": "2019-01",
+    "dateEnd": "2024-11",
     "company": "Janx Spirit",
     "address": "123 Upside st, Nowhere, Anywhere 1010101",
     "position": "Inventor",

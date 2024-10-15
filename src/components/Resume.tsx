@@ -38,7 +38,8 @@ export default function Resume({
           <Experience
             position={experience.position}
             company={experience.company}
-            dates={experience.dates}
+            dateStart={experience.dateStart}
+            dateEnd={experience.dateEnd}
             roleDesc={experience.roleDesc}
           ></Experience>
           <br></br>
@@ -46,7 +47,8 @@ export default function Resume({
           <Experience
             position={experience.position}
             company={experience.company}
-            dates={experience.dates}
+            dateStart={experience.dateStart}
+            dateEnd={experience.dateEnd}
             roleDesc={experience.roleDesc}
           ></Experience>
         </ExperienceSection>
