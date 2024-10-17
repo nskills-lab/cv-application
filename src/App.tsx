@@ -32,7 +32,9 @@ function App() {
   const [company, setCompany] = useState(example.experience.company);
   const [position, setPosition] = useState(example.experience.position);
   const [roleDesc, setDesc] = useState(example.experience.desc);
-
+  const [expItems, setExpItems] = useState([1]);
+  const [counter, setCounter] = useState(1);
+  console.log(expItems);
   const title: Title = {
     name: name,
     titlePosition: titlePosition,
@@ -126,6 +128,13 @@ function App() {
     }
   }
 
+  function handleAddExpInput() {
+    console.log(counter);
+    if (expItems.length > 3) return;
+    setCounter((counter) => counter + 1);
+    setExpItems((expItems) => [...expItems, counter]);
+  }
+
   return (
     <>
       <AppHeader></AppHeader>
@@ -156,14 +165,17 @@ function App() {
           <form data-form="experience-form">
             <fieldset data-fieldset="experience">
               <legend>Experience </legend>
-              <ExperienceForm
-                experience={experience}
-                onChange={handleInputChanges}
-              ></ExperienceForm>
-              <br />
+              {expItems.map((item, index) => (
+                <ExperienceForm
+                  key={index}
+                  experience={experience}
+                  onChange={handleInputChanges}
+                ></ExperienceForm>
+              ))}
               <div>
-                <button>+ Experience</button>
-                <button>Delete</button>
+                <button id="add-exp-btn" onClick={handleAddExpInput}>
+                  + Experience
+                </button>
               </div>
             </fieldset>
           </form>

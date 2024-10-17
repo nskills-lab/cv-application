@@ -1,9 +1,11 @@
-export function ExperienceForm({ experience, onChange }) {
+import { useState } from 'react';
+
+export function ExperienceForm({ keyValue, experience, onChange }) {
   return (
     <>
-      <legend>Experience </legend>
-
-      <label htmlFor="job-position">Job Position </label>
+      <label htmlFor="job-position" key={keyValue}>
+        Job Position{' '}
+      </label>
       <input
         type="text"
         id="job-position"
@@ -54,6 +56,12 @@ export function ExperienceForm({ experience, onChange }) {
         value={experience.roleDesc}
         onChange={onChange}
       />
+      <br />
+      <div>
+        {' '}
+        <button id="del-exp-btn">Delete</button>
+      </div>
+      <br />
     </>
   );
 }
