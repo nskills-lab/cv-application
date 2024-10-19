@@ -25,16 +25,10 @@ function App() {
   const [phone, setPhone] = useState(example.contacts.phone);
   const [email, setEmail] = useState(example.contacts.email);
 
-  const [expDateStart, setExpDateStart] = useState(
-    example.experience.dateStart
-  );
-  const [expDateEnd, setExpDateEnd] = useState(example.experience.dateEnd);
-  const [company, setCompany] = useState(example.experience.company);
-  const [position, setPosition] = useState(example.experience.position);
-  const [roleDesc, setDesc] = useState(example.experience.desc);
-  const [expItems, setExpItems] = useState([1]);
-  const [counter, setCounter] = useState(1);
-  console.log(expItems);
+  const [expItems, setExpItems] = useState<ExperienceType[]>([
+    ...example.experience,
+  ]);
+
   const title: Title = {
     name: name,
     titlePosition: titlePosition,
@@ -50,14 +44,6 @@ function App() {
   const contacts: Contacts = {
     phone: phone,
     email: email,
-  };
-
-  const experience: ExperienceType = {
-    position: position,
-    company: company,
-    dateStart: expDateStart,
-    dateEnd: expDateEnd,
-    roleDesc: roleDesc,
   };
 
   function handleInputChanges(e) {
@@ -96,43 +82,42 @@ function App() {
     }
 
     // Experience changes
-    if (e.target.matches('#job-position')) {
-      setPosition(e.target.value);
-    }
+    const key = e.target.dataset.expItem;
+    const expNum = parseInt(e.target.closest('[data-exp-num]').dataset.expNum);
+    setExpItems((expItems) => {
+      return [...expItems].map((item) => {
+        if (item.id === expNum) {
+          if (e.target.matches('#date-end-exp-current')) {
+            const isPresent = e.target.checked;
 
-    if (e.target.matches('#company')) {
-      setCompany(e.target.value);
-    }
-
-    if (e.target.matches('#date-start-exp')) {
-      setExpDateStart(e.target.value);
-    }
-
-    if (e.target.matches('#date-end-exp')) {
-      const value = dateFormat(e.target.value);
-      setExpDateEnd(value);
-    }
-
-    if (e.target.matches('#date-end-exp-current')) {
-      const isPresent = e.target.checked;
-      if (isPresent) {
-        setExpDateEnd('Present');
-        document.getElementById('date-end-exp').disabled = true;
-      } else {
-        document.getElementById('date-end-exp').disabled = false;
-      }
-    }
-
-    if (e.target.matches('#job-desc')) {
-      setDesc(e.target.value);
-    }
+            if (isPresent) {
+              item.dateEnd = 'Present';
+            }
+            document.getElementById('date-end-exp').disabled = isPresent;
+          } else {
+            item[key] = e.target.value;
+          }
+        }
+        return item;
+      });
+    });
   }
 
-  function handleAddExpInput() {
-    console.log(counter);
-    if (expItems.length > 3) return;
-    setCounter((counter) => counter + 1);
-    setExpItems((expItems) => [...expItems, counter]);
+  function addExperience(e) {
+    e.preventDefault();
+    const next = expItems.length ? expItems[expItems.length - 1].id + 1 : 0;
+
+    if (next > 3) return;
+    const experienceNew: ExperienceType = {
+      id: next,
+      position: '',
+      company: '',
+      dateStart: '',
+      dateEnd: '',
+      roleDesc: '',
+    };
+
+    setExpItems((expItems) => expItems.concat(experienceNew));
   }
 
   return (
@@ -164,16 +149,18 @@ function App() {
           </form>
           <form data-form="experience-form">
             <fieldset data-fieldset="experience">
-              <legend>Experience </legend>
-              {expItems.map((item, index) => (
+              <legend className="tooltip">
+                Experience &#33;
+                <span className="tooltiptext">Upto 3 entries max</span>
+              </legend>
+              {expItems.map((item) => (
                 <ExperienceForm
-                  key={index}
-                  experience={experience}
+                  experience={item}
                   onChange={handleInputChanges}
                 ></ExperienceForm>
               ))}
               <div>
-                <button id="add-exp-btn" onClick={handleAddExpInput}>
+                <button id="add-exp-btn" onClick={addExperience}>
                   + Experience
                 </button>
               </div>
@@ -185,7 +172,7 @@ function App() {
           title={title}
           contacts={contacts}
           education={education}
-          experience={experience}
+          experience={expItems}
         >
           {' '}
         </Resume>

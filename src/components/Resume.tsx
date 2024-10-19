@@ -5,7 +5,7 @@ import Experience, { ExperienceType } from './experience/Experience';
 import ExperienceSection from './experience/ExperienceSection';
 import TitleSection, { Title } from './heading/TitleSection';
 
-export type ResumeType = Title | Contacts | EducationType | ExperienceType;
+export type ResumeType = Title | Contacts | EducationType | ExperienceType[];
 
 export default function Resume({
   contacts,
@@ -35,22 +35,15 @@ export default function Resume({
           titlePosition={title.titlePosition}
         ></TitleSection>
         <ExperienceSection>
-          <Experience
-            position={experience.position}
-            company={experience.company}
-            dateStart={experience.dateStart}
-            dateEnd={experience.dateEnd}
-            roleDesc={experience.roleDesc}
-          ></Experience>
-          <br></br>
-          <br></br>
-          <Experience
-            position={experience.position}
-            company={experience.company}
-            dateStart={experience.dateStart}
-            dateEnd={experience.dateEnd}
-            roleDesc={experience.roleDesc}
-          ></Experience>
+          {experience.map((item, index) => (
+            <Experience
+              position={item.position}
+              company={item.company}
+              dateStart={item.dateStart}
+              dateEnd={item.dateEnd}
+              roleDesc={item.roleDesc}
+            ></Experience>
+          ))}
         </ExperienceSection>
       </div>
     </div>

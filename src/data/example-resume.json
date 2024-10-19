@@ -13,12 +13,22 @@
     "phone": "+000 - 000 - 0000",
     "email": "president@galaxy.universe"
   },
-  "experience": {
-    "dateStart": "2019-01",
-    "dateEnd": "2024-11",
-    "company": "Janx Spirit",
-    "address": "123 Upside st, Nowhere, Anywhere 1010101",
-    "position": "Inventor",
-    "desc": "Zaphod Beeblebrox, adventurer, ex-hippie, good-timer (crook? quite possibly), manic self-publicist, terrible bad at personal relationships, often thought to be completely out to lunch."
-  }
+  "experience": [
+    {
+      "id": 1,
+      "position": "Part-time Investigator",
+      "company": "Really Wild Stuff Corporation",
+      "dateStart": "2019-01",
+      "dateEnd": "2024-11",
+      "roleDesc": "Zaphod is hedonistic and irresponsible, self-centered almost to the point of solipsism, and often extremely insensitive to the feelings of those around him. "
+    },
+    {
+      "id": 2,
+      "company": "The Beeblebrox Salvage",
+      "position": "Inventor",
+      "dateStart": "2000-01",
+      "dateEnd": "2018-11",
+      "roleDesc": "Invented the Pan Galactic Gargle Blaster. Zaphod is nevertheless quite charismatic which causes many characters to ignore his other flaws."
+    }
+  ]
 }

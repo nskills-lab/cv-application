@@ -1,4 +1,5 @@
 export type ExperienceType = {
+  id: number;
   position: string;
   company: string;
   dateStart: string;

@@ -1,14 +1,13 @@
 import { useState } from 'react';
 
-export function ExperienceForm({ keyValue, experience, onChange }) {
+export function ExperienceForm({ experience, onChange }) {
   return (
-    <>
-      <label htmlFor="job-position" key={keyValue}>
-        Job Position{' '}
-      </label>
+    <div data-exp-num={experience.id}>
+      <label htmlFor="job-position">Job Position </label>
       <input
         type="text"
         id="job-position"
+        data-exp-item="position"
         value={experience.position}
         onChange={onChange}
       />
@@ -17,6 +16,7 @@ export function ExperienceForm({ keyValue, experience, onChange }) {
       <input
         type="text"
         id="company"
+        data-exp-item="company"
         value={experience.company}
         onChange={onChange}
       />
@@ -26,6 +26,7 @@ export function ExperienceForm({ keyValue, experience, onChange }) {
         type="month"
         id="date-start-exp"
         name="date-start-exp"
+        data-exp-item="dateStart"
         value={experience.dateStart}
         onChange={onChange}
       />
@@ -35,6 +36,7 @@ export function ExperienceForm({ keyValue, experience, onChange }) {
         type="month"
         id="date-end-exp"
         name="date-end-exp"
+        data-exp-item="dateEnd"
         min="1900-01"
         max="2100-12"
         value={experience.dateEnd}
@@ -50,6 +52,7 @@ export function ExperienceForm({ keyValue, experience, onChange }) {
       <label htmlFor="job-desc">Responsibilities </label>
       <textarea
         id="job-desc"
+        data-exp-item="roleDesc"
         maxLength={500}
         cols={50}
         rows={10}
@@ -62,6 +65,6 @@ export function ExperienceForm({ keyValue, experience, onChange }) {
         <button id="del-exp-btn">Delete</button>
       </div>
       <br />
-    </>
+    </div>
   );
 }
