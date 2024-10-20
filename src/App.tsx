@@ -47,6 +47,7 @@ function App() {
   };
 
   function handleInputChanges(e) {
+    e.preventDefault();
     // Title changes
     if (e.target.matches('#full_name')) {
       setName(e.target.value);
@@ -82,32 +83,47 @@ function App() {
     }
 
     // Experience changes
-    const key = e.target.dataset.expItem;
-    const expNum = parseInt(e.target.closest('[data-exp-num]').dataset.expNum);
-    setExpItems((expItems) => {
-      return [...expItems].map((item) => {
-        if (item.id === expNum) {
-          if (e.target.matches('#date-end-exp-current')) {
-            const isPresent = e.target.checked;
 
-            if (isPresent) {
-              item.dateEnd = 'Present';
-            }
-            document.getElementById('date-end-exp').disabled = isPresent;
-          } else {
-            item[key] = e.target.value;
+    const exp = e.target.closest('div[data-exp-num]');
+    console.log(exp);
+    const key = e.target.dataset.expItem;
+    const expNum = parseInt(exp.dataset.expNum);
+
+    if (e.target.matches('#del-exp-btn')) {
+      setExpItems((expItems) => {
+        return [...expItems].filter((item) => {
+          if (item.id !== expNum) {
+            return item;
           }
-        }
-        return item;
+        });
       });
-    });
+      console.log(expItems);
+    } else {
+      setExpItems((expItems) => {
+        return [...expItems].map((item) => {
+          if (item.id === expNum) {
+            if (e.target.matches('#date-end-exp-current')) {
+              const isPresent = e.target.checked;
+
+              if (isPresent) {
+                item.dateEnd = 'Present';
+              }
+              document.getElementById('date-end-exp').disabled = isPresent;
+            } else {
+              item[key] = e.target.value;
+            }
+          }
+          return item;
+        });
+      });
+    }
   }
 
   function addExperience(e) {
     e.preventDefault();
     const next = expItems.length ? expItems[expItems.length - 1].id + 1 : 0;
 
-    if (next > 3) return;
+    if (next > 2) return;
     const experienceNew: ExperienceType = {
       id: next,
       position: '',

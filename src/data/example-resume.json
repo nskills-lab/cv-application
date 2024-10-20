@@ -15,7 +15,7 @@
   },
   "experience": [
     {
-      "id": 1,
+      "id": 0,
       "position": "Part-time Investigator",
       "company": "Really Wild Stuff Corporation",
       "dateStart": "2019-01",
@@ -23,7 +23,7 @@
       "roleDesc": "Zaphod is hedonistic and irresponsible, self-centered almost to the point of solipsism, and often extremely insensitive to the feelings of those around him. "
     },
     {
-      "id": 2,
+      "id": 1,
       "company": "The Beeblebrox Salvage",
       "position": "Inventor",
       "dateStart": "2000-01",

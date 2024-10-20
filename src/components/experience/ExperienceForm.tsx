@@ -62,7 +62,9 @@ export function ExperienceForm({ experience, onChange }) {
       <br />
       <div>
         {' '}
-        <button id="del-exp-btn">Delete</button>
+        <button id="del-exp-btn" onClick={onChange}>
+          Delete
+        </button>
       </div>
       <br />
     </div>
