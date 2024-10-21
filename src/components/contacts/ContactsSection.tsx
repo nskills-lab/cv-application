@@ -1,10 +1,7 @@
 import phoneIcon from '../../styles/assets/icons/icons8-phone-24.png';
 import emailIcon from '../../styles/assets/icons/icons8-email-24.png';
+import { Contacts } from '../types';
 
-export type Contacts = {
-  phone: string;
-  email: string;
-};
 export default function ContactsSection({ phone, email }: Contacts) {
   return (
     <div id="contact-info">

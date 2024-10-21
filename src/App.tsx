@@ -2,17 +2,20 @@ import './styles/normalize.css';
 import './styles/App.css';
 import AppHeader from './components/AppHeader';
 import { useState } from 'react';
-import { Contacts } from './components/contacts/ContactsSection';
-import { EducationType } from './components/education/Education';
-import { Title } from './components/heading/TitleSection';
-import { ExperienceType } from './components/experience/Experience';
 import example from './data/example-resume.json';
 import Resume from './components/Resume';
 import TitleForm from './components/heading/TitleForm';
 import ContactsForm from './components/contacts/ContactsForm';
 import EducationForm from './components/education/EducationForm';
 import { ExperienceForm } from './components/experience/ExperienceForm';
-import { dateFormat } from './utility/helpers';
+import {
+  Contacts,
+  EducationType,
+  ExperienceType,
+  HandleFunction,
+  Events,
+  Title,
+} from './components/types';
 
 function App() {
   const [name, setName] = useState(example.title.name);
@@ -21,10 +24,8 @@ function App() {
   const [institute, setInstitue] = useState(example.education.institute);
   const [dateStart, setEduStartDate] = useState(example.education.dateStart);
   const [dateEnd, setEduEndDate] = useState(example.education.dateEnd);
-
   const [phone, setPhone] = useState(example.contacts.phone);
   const [email, setEmail] = useState(example.contacts.email);
-
   const [expItems, setExpItems] = useState<ExperienceType[]>([
     ...example.experience,
   ]);
@@ -46,7 +47,8 @@ function App() {
     email: email,
   };
 
-  function handleInputChanges(e) {
+  function handleInputChanges(e: Event) {
+    console.log(e);
     e.preventDefault();
     // Title changes
     if (e.target.matches('#full_name')) {
@@ -83,10 +85,7 @@ function App() {
     }
 
     // Experience changes
-
     const exp = e.target.closest('div[data-exp-num]');
-    console.log(exp);
-    const key = e.target.dataset.expItem;
     const expNum = parseInt(exp.dataset.expNum);
 
     if (e.target.matches('#del-exp-btn')) {
@@ -97,14 +96,13 @@ function App() {
           }
         });
       });
-      console.log(expItems);
     } else {
+      const key = e.target.dataset.expItem;
       setExpItems((expItems) => {
         return [...expItems].map((item) => {
           if (item.id === expNum) {
             if (e.target.matches('#date-end-exp-current')) {
               const isPresent = e.target.checked;
-
               if (isPresent) {
                 item.dateEnd = 'Present';
               }
@@ -141,22 +139,16 @@ function App() {
       <AppHeader></AppHeader>
       <div id="resume-container">
         <div id="resume-form-container">
-          <TitleForm
-            name={title.name}
-            titlePosition={title.titlePosition}
-            onChange={handleInputChanges}
-          ></TitleForm>
+          <TitleForm title={title} onChange={handleInputChanges}></TitleForm>
           <ContactsForm
-            phone={contacts.phone}
-            email={contacts.email}
-            onChange={handleInputChanges}
+            { contacts, handleInputChanges}
           ></ContactsForm>
           <form data-form="education-form">
             <fieldset data-fieldset="education">
               <legend>Educational Background </legend>
               <EducationForm
                 degree={education.degree}
-                institution={education.institute}
+                institute={education.institute}
                 dateStart={education.dateStart}
                 dateEnd={education.dateEnd}
                 onChange={handleInputChanges}
@@ -171,8 +163,8 @@ function App() {
               </legend>
               {expItems.map((item) => (
                 <ExperienceForm
-                  experience={item}
-                  onChange={handleInputChanges}
+                  {...item}
+                  {...handleInputChanges}
                 ></ExperienceForm>
               ))}
               <div>

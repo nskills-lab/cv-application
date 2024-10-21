@@ -1,7 +1,5 @@
-export type Title = {
-  name: string;
-  titlePosition: string;
-};
+import { Title } from '../types';
+
 export default function TitleSection({ name, titlePosition }: Title) {
   return (
     <div id="title">

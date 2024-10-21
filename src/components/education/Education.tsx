@@ -1,9 +1,5 @@
-export type EducationType = {
-  degree: string;
-  institute: string;
-  dateStart: number | string;
-  dateEnd: number;
-};
+import { EducationType } from '../types';
+
 export default function Education({
   degree,
   institute,

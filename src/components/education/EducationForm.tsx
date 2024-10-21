@@ -1,20 +1,24 @@
-export default function EducationForm({
-  degree,
-  institution,
-  dateStart,
-  dateEnd,
-  onChange,
-}) {
+import { EducationType, HandleFunction } from '../types';
+
+export default function EducationForm(
+  education: EducationType,
+  onChange: HandleFunction
+) {
   return (
     <>
       <label htmlFor="degree">Field of Study </label>
-      <input type="text" id="degree" value={degree} onChange={onChange} />
+      <input
+        type="text"
+        id="degree"
+        value={education.degree}
+        onChange={onChange}
+      />
 
       <label htmlFor="institution">Institution </label>
       <input
         type="text"
         id="institution"
-        value={institution}
+        value={education.institute}
         onChange={onChange}
       />
 
@@ -25,7 +29,7 @@ export default function EducationForm({
         min={1900}
         max={2900}
         step={1}
-        value={dateStart}
+        value={education.dateStart}
         onChange={onChange}
       />
 
@@ -36,7 +40,7 @@ export default function EducationForm({
         min={1900}
         max={2900}
         step={1}
-        value={dateEnd}
+        value={education.dateEnd}
         onChange={onChange}
       />
       <br />

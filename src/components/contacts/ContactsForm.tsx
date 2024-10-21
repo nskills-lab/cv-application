@@ -1,14 +1,26 @@
-export default function ContactsForm({ phone, email, onChange }) {
+import { Props } from '../types';
+
+export default function ContactsForm({ values, onChange }: Props) {
   return (
     <form data-form="contact-form">
       <fieldset data-fieldset="contact">
         <legend>Contact Info</legend>
 
         <label htmlFor="phone">Phone </label>
-        <input type="phone" id="phone" value={phone} onChange={onChange} />
+        <input
+          type="phone"
+          id="phone"
+          value={values.phone}
+          onChange={onChange}
+        />
 
         <label htmlFor="email">Email </label>
-        <input type="email" id="email" value={email} onChange={onChange} />
+        <input
+          type="email"
+          id="email"
+          value={values.email}
+          onChange={onChange}
+        />
       </fieldset>
     </form>
   );

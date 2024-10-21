@@ -1,11 +1,4 @@
-export type ExperienceType = {
-  id: number;
-  position: string;
-  company: string;
-  dateStart: string;
-  dateEnd: string;
-  roleDesc: string;
-};
+import { ExperienceType } from '../types';
 
 export default function Experience({
   position,

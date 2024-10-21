@@ -1,18 +1,17 @@
-import ContactsSection, { Contacts } from './contacts/ContactsSection';
-import Education, { EducationType } from './education/Education';
+import ContactsSection from './contacts/ContactsSection';
+import Education from './education/Education';
 import EducationSection from './education/EducationSection';
-import Experience, { ExperienceType } from './experience/Experience';
+import Experience from './experience/Experience';
 import ExperienceSection from './experience/ExperienceSection';
-import TitleSection, { Title } from './heading/TitleSection';
+import TitleSection from './heading/TitleSection';
+import { Contacts, EducationType, ExperienceType, Title } from './types';
 
-export type ResumeType = Title | Contacts | EducationType | ExperienceType[];
-
-export default function Resume({
-  contacts,
-  education,
-  title,
-  experience,
-}: ResumeType) {
+export default function Resume(
+  contacts: Contacts,
+  education: EducationType,
+  title: Title,
+  experience: ExperienceType[]
+) {
   return (
     <div id="resume-content">
       <div id="rc-sidebar">
@@ -35,7 +34,7 @@ export default function Resume({
           titlePosition={title.titlePosition}
         ></TitleSection>
         <ExperienceSection>
-          {experience.map((item, index) => (
+          {experience.map((item: ExperienceType) => (
             <Experience
               position={item.position}
               company={item.company}

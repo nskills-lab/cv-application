@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { ExperienceType, HandleFunction } from '../types';
 
-export function ExperienceForm({ experience, onChange }) {
+export function ExperienceForm(
+  experience: ExperienceType,
+  onChange: HandleFunction
+) {
   return (
     <div data-exp-num={experience.id}>
       <label htmlFor="job-position">Job Position </label>
