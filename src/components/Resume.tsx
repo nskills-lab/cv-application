@@ -2,7 +2,6 @@ import ContactsSection from './contacts/ContactsSection';
 import Education from './education/Education';
 import EducationSection from './education/EducationSection';
 import Experience from './experience/Experience';
-import ExperienceSection from './experience/ExperienceSection';
 import TitleSection from './heading/TitleSection';
 import { ExperienceType, ResumeType } from './types';
 

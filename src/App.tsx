@@ -12,11 +12,8 @@ import {
   Contacts,
   EducationType,
   ExperienceType,
-  HandleFunction,
-  Events,
   Title,
 } from './components/types';
-import Experience from './components/experience/Experience';
 
 function App() {
   const [name, setName] = useState(example.title.name);
@@ -107,7 +104,10 @@ function App() {
               if (isPresent) {
                 item.dateEnd = 'Present';
               }
-              document.getElementById('date-end-exp').disabled = isPresent;
+              const checkboxEl = document.getElementById(
+                'date-end-exp'
+              ) as HTMLInputElement;
+              checkboxEl.disabled = isPresent;
             } else {
               item[key] = e.target.value;
             }
