@@ -4,14 +4,14 @@ import EducationSection from './education/EducationSection';
 import Experience from './experience/Experience';
 import ExperienceSection from './experience/ExperienceSection';
 import TitleSection from './heading/TitleSection';
-import { Contacts, EducationType, ExperienceType, Title } from './types';
+import { ExperienceType, ResumeType } from './types';
 
-export default function Resume(
-  contacts: Contacts,
-  education: EducationType,
-  title: Title,
-  experience: ExperienceType[]
-) {
+export default function Resume({
+  title,
+  contacts,
+  education,
+  experiences,
+}: ResumeType) {
   return (
     <div id="resume-content">
       <div id="rc-sidebar">
@@ -33,17 +33,22 @@ export default function Resume(
           name={title.name}
           titlePosition={title.titlePosition}
         ></TitleSection>
-        <ExperienceSection>
-          {experience.map((item: ExperienceType) => (
-            <Experience
-              position={item.position}
-              company={item.company}
-              dateStart={item.dateStart}
-              dateEnd={item.dateEnd}
-              roleDesc={item.roleDesc}
-            ></Experience>
-          ))}
-        </ExperienceSection>
+        <div id="experience-container">
+          <span id="exp-section-title">Experience</span>
+          <div className="divider"></div>
+          <div id="experience-content">
+            {experiences.map((item: ExperienceType) => (
+              <Experience
+                id={item.id}
+                position={item.position}
+                company={item.company}
+                dateStart={item.dateStart}
+                dateEnd={item.dateEnd}
+                roleDesc={item.roleDesc}
+              ></Experience>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

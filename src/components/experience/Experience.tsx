@@ -1,6 +1,7 @@
 import { ExperienceType } from '../types';
 
 export default function Experience({
+  id,
   position,
   company,
   dateStart,
@@ -8,7 +9,7 @@ export default function Experience({
   roleDesc,
 }: ExperienceType) {
   return (
-    <div data-exp>
+    <div data-exp={id}>
       <div data-exp-position-date>
         <div data-exp-position>{position}</div>
         <div data-exp-date>

@@ -1,16 +1,16 @@
-import { EducationType, HandleFunction } from '../types';
+import { EducationType, Props } from '../types';
 
-export default function EducationForm(
-  education: EducationType,
-  onChange: HandleFunction
-) {
+export default function EducationForm({
+  values,
+  onChange,
+}: Props<EducationType>) {
   return (
     <>
       <label htmlFor="degree">Field of Study </label>
       <input
         type="text"
         id="degree"
-        value={education.degree}
+        value={values.degree}
         onChange={onChange}
       />
 
@@ -18,7 +18,7 @@ export default function EducationForm(
       <input
         type="text"
         id="institution"
-        value={education.institute}
+        value={values.institute}
         onChange={onChange}
       />
 
@@ -29,7 +29,7 @@ export default function EducationForm(
         min={1900}
         max={2900}
         step={1}
-        value={education.dateStart}
+        value={values.dateStart}
         onChange={onChange}
       />
 
@@ -40,7 +40,7 @@ export default function EducationForm(
         min={1900}
         max={2900}
         step={1}
-        value={education.dateEnd}
+        value={values.dateEnd}
         onChange={onChange}
       />
       <br />

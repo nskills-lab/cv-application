@@ -1,17 +1,14 @@
-import { ExperienceType, HandleFunction } from '../types';
+import { ExperienceType, Props } from '../types';
 
-export function ExperienceForm(
-  experience: ExperienceType,
-  onChange: HandleFunction
-) {
+export function ExperienceForm({ values, onChange }: Props<ExperienceType>) {
   return (
-    <div data-exp-num={experience.id}>
+    <div data-exp-num={values.id}>
       <label htmlFor="job-position">Job Position </label>
       <input
         type="text"
         id="job-position"
         data-exp-item="position"
-        value={experience.position}
+        value={values.position}
         onChange={onChange}
       />
 
@@ -20,7 +17,7 @@ export function ExperienceForm(
         type="text"
         id="company"
         data-exp-item="company"
-        value={experience.company}
+        value={values.company}
         onChange={onChange}
       />
 
@@ -30,7 +27,7 @@ export function ExperienceForm(
         id="date-start-exp"
         name="date-start-exp"
         data-exp-item="dateStart"
-        value={experience.dateStart}
+        value={values.dateStart}
         onChange={onChange}
       />
 
@@ -42,7 +39,7 @@ export function ExperienceForm(
         data-exp-item="dateEnd"
         min="1900-01"
         max="2100-12"
-        value={experience.dateEnd}
+        value={values.dateEnd}
         onChange={onChange}
       />
       <div id="exp-current-parent">
@@ -59,7 +56,7 @@ export function ExperienceForm(
         maxLength={500}
         cols={50}
         rows={10}
-        value={experience.roleDesc}
+        value={values.roleDesc}
         onChange={onChange}
       />
       <br />

@@ -1,6 +1,6 @@
-import { Props } from '../types';
+import { Contacts, Props } from '../types';
 
-export default function ContactsForm({ values, onChange }: Props) {
+export default function ContactsForm({ values, onChange }: Props<Contacts>) {
   return (
     <form data-form="contact-form">
       <fieldset data-fieldset="contact">

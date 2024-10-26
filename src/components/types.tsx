@@ -18,7 +18,7 @@ export type Title = {
 };
 
 export type ExperienceType = {
-  id?: number;
+  id: number;
   position: string;
   company: string;
   dateStart: string;
@@ -38,7 +38,14 @@ export type Events =
 
 export type HandleFunction = (e: Events) => void;
 
-export type Props = {
-  values: Title & Contacts & EducationType & ExperienceType;
+export type ResumeType = {
+  title: Title;
+  contacts: Contacts;
+  education: EducationType;
+  experiences: ExperienceType[];
+};
+
+export type Props<T> = {
+  values: T;
   onChange: HandleFunction;
 };

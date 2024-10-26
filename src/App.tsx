@@ -16,6 +16,7 @@ import {
   Events,
   Title,
 } from './components/types';
+import Experience from './components/experience/Experience';
 
 function App() {
   const [name, setName] = useState(example.title.name);
@@ -47,7 +48,7 @@ function App() {
     email: email,
   };
 
-  function handleInputChanges(e: Event) {
+  function handleInputChanges(e) {
     console.log(e);
     e.preventDefault();
     // Title changes
@@ -97,9 +98,9 @@ function App() {
         });
       });
     } else {
-      const key = e.target.dataset.expItem;
+      const key: keyof ExperienceType = e.target.dataset.expItem;
       setExpItems((expItems) => {
-        return [...expItems].map((item) => {
+        return [...expItems].map((item: ExperienceType) => {
           if (item.id === expNum) {
             if (e.target.matches('#date-end-exp-current')) {
               const isPresent = e.target.checked;
@@ -139,18 +140,19 @@ function App() {
       <AppHeader></AppHeader>
       <div id="resume-container">
         <div id="resume-form-container">
-          <TitleForm title={title} onChange={handleInputChanges}></TitleForm>
+          <TitleForm
+            values={title}
+            onChange={() => handleInputChanges}
+          ></TitleForm>
           <ContactsForm
-            { contacts, handleInputChanges}
+            values={contacts}
+            onChange={handleInputChanges}
           ></ContactsForm>
           <form data-form="education-form">
             <fieldset data-fieldset="education">
               <legend>Educational Background </legend>
               <EducationForm
-                degree={education.degree}
-                institute={education.institute}
-                dateStart={education.dateStart}
-                dateEnd={education.dateEnd}
+                values={education}
                 onChange={handleInputChanges}
               ></EducationForm>
             </fieldset>
@@ -163,8 +165,8 @@ function App() {
               </legend>
               {expItems.map((item) => (
                 <ExperienceForm
-                  {...item}
-                  {...handleInputChanges}
+                  values={item}
+                  onChange={handleInputChanges}
                 ></ExperienceForm>
               ))}
               <div>
@@ -180,10 +182,8 @@ function App() {
           title={title}
           contacts={contacts}
           education={education}
-          experience={expItems}
-        >
-          {' '}
-        </Resume>
+          experiences={expItems}
+        ></Resume>
       </div>
     </>
   );

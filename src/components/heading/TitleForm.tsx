@@ -1,6 +1,6 @@
-import { HandleFunction, Title } from '../types';
+import { Props, Title } from '../types';
 
-export default function TitleForm(title: Title, onChange: HandleFunction) {
+export default function TitleForm({ values, onChange }: Props<Title>) {
   return (
     <form data-form="title-form">
       <fieldset data-fieldset="title">
@@ -9,7 +9,7 @@ export default function TitleForm(title: Title, onChange: HandleFunction) {
         <input
           type="text"
           id="full_name"
-          value={title.name}
+          value={values.name}
           onChange={onChange}
         />
 
@@ -17,7 +17,7 @@ export default function TitleForm(title: Title, onChange: HandleFunction) {
         <input
           type="text"
           id="position"
-          value={title.titlePosition}
+          value={values.titlePosition}
           onChange={onChange}
         />
       </fieldset>
