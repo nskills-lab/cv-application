@@ -27,7 +27,17 @@ function App() {
   const [expItems, setExpItems] = useState<ExperienceType[]>([
     ...example.experience,
   ]);
-  const [display, setDisplay] = useState({ view: 'expanded', toggle: '▼' });
+  const toggleVariation = [
+    { view: 'expanded', toggle: '▼' },
+    { view: 'collapsed', toggle: '▲' },
+  ];
+
+  const [display, setDisplay] = useState({
+    'title-form': toggleVariation[0],
+    'contact-form': toggleVariation[0],
+    'education-form': toggleVariation[0],
+    'experience-form': toggleVariation[0],
+  });
 
   const title: Title = {
     name: name,
@@ -49,17 +59,19 @@ function App() {
   function handleInputChanges(e) {
     e.preventDefault();
 
-    //
+    // Display toggle changes
     if (e.target.matches('[data-toggle]')) {
-      console.log(display);
-      if (display.view === 'expanded') {
-        setDisplay({ view: 'collapsed', toggle: '▲' });
-        return;
-      }
-      if (display.view === 'collapsed') {
-        setDisplay({ view: 'expanded', toggle: '▼' });
-        return;
-      }
+      const subForm = e.target.closest('[data-form]').dataset.form;
+      const current = display[subForm];
+      const target = toggleVariation.find((value) => {
+        return value.view !== current.view;
+      });
+
+      setDisplay({
+        ...display,
+        [subForm]: target,
+      });
+      return;
     }
     // Title changes
     if (e.target.matches('#full_name')) {
@@ -164,36 +176,54 @@ function App() {
         <div id="resume-form-container">
           <TitleForm
             values={title}
-            display={display}
+            display={display['title-form']}
             onChange={handleInputChanges}
           ></TitleForm>
           <ContactsForm
             values={contacts}
+            display={display['contact-form']}
             onChange={handleInputChanges}
           ></ContactsForm>
           <form data-form="education-form">
             <fieldset data-fieldset="education">
-              <legend>Educational Background </legend>
+              <div data-form-header>
+                <span data-legend="edu">Educational Background</span>
+                <button data-toggle onClick={handleInputChanges}>
+                  {display['education-form'].toggle}
+                </button>
+              </div>
               <EducationForm
                 values={education}
+                display={display['education-form']}
                 onChange={handleInputChanges}
               ></EducationForm>
             </fieldset>
           </form>
           <form data-form="experience-form">
             <fieldset data-fieldset="experience">
-              <legend className="tooltip">
-                Experience &#33;
-                <span className="tooltiptext">Upto 3 entries max</span>
-              </legend>
+              <div data-form-header>
+                <span data-legend="edu" className="tooltip">
+                  Experience &#33;
+                  <span className="tooltiptext">Upto 3 entries max</span>
+                </span>
+                <button data-toggle onClick={handleInputChanges}>
+                  {display['experience-form'].toggle}
+                </button>
+              </div>
               {expItems.map((item) => (
                 <ExperienceForm
+                  display={display['experience-form']}
                   values={item}
                   onChange={handleInputChanges}
                 ></ExperienceForm>
               ))}
               <div>
-                <button id="add-exp-btn" onClick={addExperience}>
+                <button
+                  id="add-exp-btn"
+                  onClick={addExperience}
+                  data-form-content
+                  className={display['experience-form'].view}
+                >
                   + Experience
                 </button>
               </div>

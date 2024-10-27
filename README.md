@@ -2,9 +2,11 @@
 
 Based on The Odin Project's assignment.
 
-Checkout this live preview
+![sample resume](./src/styles/assets/resume-sample.png)
 
-Acknowledgements:
+[Checkout this live preview]()
+
+## Acknowledgements
 
 <a target="_blank" href="https://icons8.com/icon/85500/email">Email</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
 

@@ -2,10 +2,11 @@ import { EducationType, Props } from '../types';
 
 export default function EducationForm({
   values,
+  display,
   onChange,
 }: Props<EducationType>) {
   return (
-    <>
+    <div data-form-content className={display.view}>
       <label htmlFor="degree">Field of Study </label>
       <input
         type="text"
@@ -44,6 +45,6 @@ export default function EducationForm({
         onChange={onChange}
       />
       <br />
-    </>
+    </div>
   );
 }

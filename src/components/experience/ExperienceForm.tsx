@@ -1,8 +1,12 @@
 import { ExperienceType, Props } from '../types';
 
-export function ExperienceForm({ values, onChange }: Props<ExperienceType>) {
+export function ExperienceForm({
+  values,
+  display,
+  onChange,
+}: Props<ExperienceType>) {
   return (
-    <div data-exp-num={values.id}>
+    <div data-exp-num={values.id} data-form-content className={display.view}>
       <label htmlFor="job-position">Job Position </label>
       <input
         type="text"

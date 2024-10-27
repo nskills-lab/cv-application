@@ -76,7 +76,6 @@ body {
 #resume-content {
   margin-top: 10px;
   margin-right: 50px;
-  height: 110%;
   width: 700px;
   display: flex;
   box-shadow: var(--main-box-shadow);
@@ -227,7 +226,6 @@ li > img {
 
 #resume-form-container {
   width: 35%;
-  height: 120%;
   box-shadow: 3px 0 7px var(--box-shadow-color-1);
   border-right-width: 4px;
   border-right-color: var(--border-color-1);
@@ -243,7 +241,6 @@ li > img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   width: 100%;
 }
 
