@@ -4,7 +4,7 @@ Based on The Odin Project's assignment.
 
 ![sample resume](./src/styles/assets/resume-sample.png)
 
-[Checkout this live preview]()
+[Checkout this live preview](https://nskills-lab.github.io/cv-application/)
 
 ## Acknowledgements
 
