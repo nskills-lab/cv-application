@@ -27,6 +27,7 @@ function App() {
   const [expItems, setExpItems] = useState<ExperienceType[]>([
     ...example.experience,
   ]);
+  const [display, setDisplay] = useState({ view: 'expanded', toggle: '▼' });
 
   const title: Title = {
     name: name,
@@ -46,40 +47,61 @@ function App() {
   };
 
   function handleInputChanges(e) {
-    console.log(e);
     e.preventDefault();
+
+    //
+    if (e.target.matches('[data-toggle]')) {
+      console.log(display);
+      if (display.view === 'expanded') {
+        setDisplay({ view: 'collapsed', toggle: '▲' });
+        return;
+      }
+      if (display.view === 'collapsed') {
+        setDisplay({ view: 'expanded', toggle: '▼' });
+        return;
+      }
+    }
     // Title changes
     if (e.target.matches('#full_name')) {
       setName(e.target.value);
+      return;
     }
 
     if (e.target.matches('#position')) {
       setTitle(e.target.value);
+      return;
     }
 
     // Contacts changes
     if (e.target.matches('#phone')) {
       setPhone(e.target.value);
+      return;
     }
+
     if (e.target.matches('#email')) {
       setEmail(e.target.value);
+      return;
     }
 
     // Education changes
     if (e.target.matches('#degree')) {
       setDegree(e.target.value);
+      return;
     }
 
     if (e.target.matches('#institution')) {
       setInstitue(e.target.value);
+      return;
     }
 
     if (e.target.matches('#date-start')) {
       setEduStartDate(e.target.value);
+      return;
     }
 
     if (e.target.matches('#date-end')) {
       setEduEndDate(e.target.value);
+      return;
     }
 
     // Experience changes
@@ -142,7 +164,8 @@ function App() {
         <div id="resume-form-container">
           <TitleForm
             values={title}
-            onChange={() => handleInputChanges}
+            display={display}
+            onChange={handleInputChanges}
           ></TitleForm>
           <ContactsForm
             values={contacts}

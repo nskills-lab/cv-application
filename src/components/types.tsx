@@ -47,5 +47,9 @@ export type ResumeType = {
 
 export type Props<T> = {
   values: T;
+  display: {
+    view: string;
+    toggle: string;
+  };
   onChange: HandleFunction;
 };

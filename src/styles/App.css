@@ -256,9 +256,33 @@ li > img {
   margin-top: 15px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border-radius: var(--main-border-radius);
   border-width: thin;
   border-color: var(--border-color-2);
+}
+
+[data-form-header] {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+[data-form-content] {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+[data-toggle] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding-right: 8px;
+  border: none;
+  background-color: var(--light-color-3);
 }
 
 .tooltip {
@@ -296,7 +320,7 @@ li > img {
   flex-direction: column;
 }
 
-[data-form] legend {
+[data-form] [data-legend] {
   font-weight: bold;
   padding: 10px;
 }
@@ -333,4 +357,16 @@ input#date-end-exp-current {
   margin-left: 10px;
   width: 15px;
   height: 18px;
+}
+
+.collapsed {
+  display: none;
+}
+
+[data-toggle] {
+  font-size: 0.7rem;
+}
+
+[data-toggle]:hover {
+  cursor: pointer;
 }
