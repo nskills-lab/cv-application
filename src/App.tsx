@@ -12,6 +12,8 @@ import {
   Contacts,
   EducationType,
   ExperienceType,
+  getValue,
+  setValue,
   Title,
 } from './components/types';
 
@@ -62,7 +64,7 @@ function App() {
     // Display toggle changes
     if (e.target.matches('[data-toggle]')) {
       const subForm = e.target.closest('[data-form]').dataset.form;
-      const current = display[subForm];
+      const current = getValue(display, subForm);
       const target = toggleVariation.find((value) => {
         return value.view !== current.view;
       });
@@ -129,7 +131,6 @@ function App() {
         });
       });
     } else {
-      const key: keyof ExperienceType = e.target.dataset.expItem;
       setExpItems((expItems) => {
         return [...expItems].map((item: ExperienceType) => {
           if (item.id === expNum) {
@@ -143,7 +144,8 @@ function App() {
               ) as HTMLInputElement;
               checkboxEl.disabled = isPresent;
             } else {
-              item[key] = e.target.value;
+              const key: keyof ExperienceType = e.target.dataset.expItem;
+              setValue(item, key, e.target.value);
             }
           }
           return item;
@@ -152,7 +154,7 @@ function App() {
     }
   }
 
-  function addExperience(e) {
+  function addExperience(e: React.SyntheticEvent) {
     e.preventDefault();
     const next = expItems.length ? expItems[expItems.length - 1].id + 1 : 0;
 
