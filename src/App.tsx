@@ -1,7 +1,7 @@
 import './styles/normalize.css';
 import './styles/App.css';
 import AppHeader from './components/AppHeader';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import example from './data/example-resume.json';
 import Resume from './components/Resume';
 import TitleForm from './components/heading/TitleForm';
@@ -15,13 +15,10 @@ import {
   setValue,
   Title,
 } from './components/types';
-import { useInputValue, useToggle } from './customHooks';
+import { useDisplayRef, useInputValue, useToggle } from './customHooks';
 
 function App() {
-  const displayVariationRef = useRef([
-    { view: 'expanded', toggle: '▼' },
-    { view: 'collapsed', toggle: '▲' },
-  ]);
+  const displayVariationRef = useDisplayRef();
   const nameInput = useInputValue(example.title.name);
   const titlePositionInput = useInputValue(example.title.position);
   const titleFormDisplay = useToggle(displayVariationRef.current[0]);
@@ -75,39 +72,52 @@ function App() {
 
   function handleExperienceInputChanges(e) {
     e.preventDefault();
-    const exp = e.target.closest('div[data-exp-num]');
-    const expNum = parseInt(exp.dataset.expNum);
+    const targetExperienceId = parseInt(
+      e.target.closest('div[data-exp-num]').dataset.expNum
+    );
 
+    // Delete target experience
     if (e.target.matches('#del-exp-btn')) {
-      setExpItems((expItems) => {
-        return [...expItems].filter((item) => {
-          if (item.id !== expNum) {
-            return item;
-          }
-        });
-      });
-    } else {
-      setExpItems((expItems) => {
-        return [...expItems].map((item: ExperienceType) => {
-          if (item.id === expNum) {
-            if (e.target.matches('#date-end-exp-current')) {
-              const isPresent = e.target.checked;
-              if (isPresent) {
-                item.dateEnd = 'Present';
-              }
-              const checkboxEl = document.getElementById(
-                'date-end-exp'
-              ) as HTMLInputElement;
-              checkboxEl.disabled = isPresent;
-            } else {
-              const key: keyof ExperienceType = e.target.dataset.expItem;
-              setValue(item, key, e.target.value);
-            }
-          }
-          return item;
-        });
-      });
+      const updatedExp = expItems.filter(
+        (item: ExperienceType) => item.id !== targetExperienceId
+      );
+      setExpItems(updatedExp);
+      return;
     }
+
+    // Update target experience end date
+    if (e.target.matches('#date-end-exp-current')) {
+      const updatedExp = [...expItems].map((item: ExperienceType) => {
+        if (item.id === targetExperienceId) {
+          const isPresent = e.target.checked;
+          const checkboxEl = document.getElementById(
+            'date-end-exp'
+          ) as HTMLInputElement;
+          console.log(isPresent);
+          if (isPresent) {
+            item.dateEnd = 'Present';
+            // checkboxEl.disabled = isPresent;
+          } else {
+            checkboxEl.disabled = isPresent;
+          }
+        }
+        return item;
+      });
+      setExpItems(updatedExp);
+      return;
+    }
+
+    // Update target experience
+    setExpItems((expItems) => {
+      return [...expItems].map((item: ExperienceType) => {
+        if (item.id === targetExperienceId) {
+          const key: keyof ExperienceType = e.target.dataset.expItem;
+          setValue(item, key, e.target.value);
+        }
+
+        return item;
+      });
+    });
   }
 
   return (

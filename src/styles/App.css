@@ -365,6 +365,7 @@ input#date-end-exp-current {
   font-size: 0.7rem;
 }
 
-[data-toggle]:hover {
+[data-toggle]:hover,
+#date-end-exp-current:hover {
   cursor: pointer;
 }

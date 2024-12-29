@@ -1,5 +1,12 @@
 import { useRef, useState } from 'react';
 
+export function useDisplayRef() {
+  return useRef([
+    { view: 'expanded', toggle: '▼' },
+    { view: 'collapsed', toggle: '▲' },
+  ]);
+}
+
 export function useInputValue(initialValue) {
   const [value, setValue] = useState(initialValue);
   const handleChange = (e) => {
@@ -14,14 +21,11 @@ export function useInputValue(initialValue) {
 }
 
 export function useToggle(initialValue: { view: string; toggle: string }) {
-  const displayVariationRef = useRef([
-    { view: 'expanded', toggle: '▼' },
-    { view: 'collapsed', toggle: '▲' },
-  ]);
   const [value, setValue] = useState(initialValue);
+  const variations = useDisplayRef();
   const handleClick = (e) => {
     e.preventDefault();
-    const target = displayVariationRef.current.find((display) => {
+    const target = variations.current.find((display) => {
       return display.view !== value.view;
     });
     setValue(target!);
