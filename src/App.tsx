@@ -160,7 +160,7 @@ function App() {
                   Experience &#33;
                   <span className="tooltiptext">Upto 3 entries max</span>
                 </span>
-                <button data-toggle onClick={handleExperienceInputChanges}>
+                <button data-toggle onClick={experienceFormDisplay.onClick}>
                   {experienceFormDisplay.value.toggle}
                 </button>
               </div>

@@ -20,11 +20,11 @@ export function useToggle(initialValue: { view: string; toggle: string }) {
   ]);
   const [value, setValue] = useState(initialValue);
   const handleClick = (e) => {
+    e.preventDefault();
     const target = displayVariationRef.current.find((display) => {
       return display.view !== value.view;
     });
-    console.log(target);
-    setValue(target);
+    setValue(target!);
   };
 
   return {
