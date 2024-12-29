@@ -5,12 +5,13 @@ export default function ContactsForm({
   display,
   onChange,
 }: Props<Contacts>) {
+  const [phoneOnChange, emailOnChage, displayOnClick] = onChange;
   return (
     <form data-form="contact-form">
       <fieldset data-fieldset="contact">
         <div data-form-header>
           <span data-legend="contact">Contact Info</span>
-          <button data-toggle onClick={onChange}>
+          <button data-toggle onClick={displayOnClick}>
             {display.toggle}
           </button>
         </div>
@@ -20,7 +21,7 @@ export default function ContactsForm({
             type="phone"
             id="phone"
             value={values.phone}
-            onChange={onChange}
+            onChange={phoneOnChange}
           />
 
           <label htmlFor="email">Email </label>
@@ -28,7 +29,7 @@ export default function ContactsForm({
             type="email"
             id="email"
             value={values.email}
-            onChange={onChange}
+            onChange={emailOnChage}
           />
         </div>
       </fieldset>

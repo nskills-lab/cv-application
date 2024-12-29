@@ -52,7 +52,7 @@ export type Props<T> = {
     view: string;
     toggle: string;
   };
-  onChange: HandleFunction;
+  onChange: Array<HandleFunction>;
 };
 
 export function getValue<T>(obj: T, key: keyof T) {

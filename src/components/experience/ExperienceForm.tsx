@@ -5,6 +5,7 @@ export function ExperienceForm({
   display,
   onChange,
 }: Props<ExperienceType>) {
+  const [experienceOnChange] = onChange;
   return (
     <div data-exp-num={values.id} data-form-content className={display.view}>
       <label htmlFor="job-position">Job Position </label>
@@ -13,7 +14,7 @@ export function ExperienceForm({
         id="job-position"
         data-exp-item="position"
         value={values.position}
-        onChange={onChange}
+        onChange={experienceOnChange}
       />
 
       <label htmlFor="company">Company</label>
@@ -22,7 +23,7 @@ export function ExperienceForm({
         id="company"
         data-exp-item="company"
         value={values.company}
-        onChange={onChange}
+        onChange={experienceOnChange}
       />
 
       <label htmlFor="date-start-exp">Start </label>
@@ -32,7 +33,7 @@ export function ExperienceForm({
         name="date-start-exp"
         data-exp-item="dateStart"
         value={values.dateStart}
-        onChange={onChange}
+        onChange={experienceOnChange}
       />
 
       <label htmlFor="date-end-exp">End </label>
@@ -44,13 +45,17 @@ export function ExperienceForm({
         min="1900-01"
         max="2100-12"
         value={values.dateEnd}
-        onChange={onChange}
+        onChange={experienceOnChange}
       />
       <div id="exp-current-parent">
         <label htmlFor="date-end-exp-current">
           I'm currently working here{' '}
         </label>
-        <input type="checkbox" id="date-end-exp-current" onChange={onChange} />
+        <input
+          type="checkbox"
+          id="date-end-exp-current"
+          onChange={experienceOnChange}
+        />
       </div>
 
       <label htmlFor="job-desc">Responsibilities </label>
@@ -61,12 +66,12 @@ export function ExperienceForm({
         cols={50}
         rows={10}
         value={values.roleDesc}
-        onChange={onChange}
+        onChange={experienceOnChange}
       />
       <br />
       <div>
         {' '}
-        <button id="del-exp-btn" onClick={onChange}>
+        <button id="del-exp-btn" onClick={experienceOnChange}>
           Delete
         </button>
       </div>

@@ -5,6 +5,12 @@ export default function EducationForm({
   display,
   onChange,
 }: Props<EducationType>) {
+  const [
+    degreeOnChange,
+    instituteOnChange,
+    dateStartOnChange,
+    dateEndOnChange,
+  ] = onChange;
   return (
     <div data-form-content className={display.view}>
       <label htmlFor="degree">Field of Study </label>
@@ -12,7 +18,7 @@ export default function EducationForm({
         type="text"
         id="degree"
         value={values.degree}
-        onChange={onChange}
+        onChange={degreeOnChange}
       />
 
       <label htmlFor="institution">Institution </label>
@@ -20,7 +26,7 @@ export default function EducationForm({
         type="text"
         id="institution"
         value={values.institute}
-        onChange={onChange}
+        onChange={instituteOnChange}
       />
 
       <label htmlFor="date-start">Start </label>
@@ -31,7 +37,7 @@ export default function EducationForm({
         max={2900}
         step={1}
         value={values.dateStart}
-        onChange={onChange}
+        onChange={dateStartOnChange}
       />
 
       <label htmlFor="date-end">End </label>
@@ -42,7 +48,7 @@ export default function EducationForm({
         max={2900}
         step={1}
         value={values.dateEnd}
-        onChange={onChange}
+        onChange={dateEndOnChange}
       />
       <br />
     </div>

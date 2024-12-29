@@ -12,113 +12,69 @@ import {
   Contacts,
   EducationType,
   ExperienceType,
-  getValue,
   setValue,
   Title,
 } from './components/types';
+import { useInputValue, useToggle } from './customHooks';
 
 function App() {
-  const [name, setName] = useState(example.title.name);
-  const [titlePosition, setTitle] = useState(example.title.position);
-  const [degree, setDegree] = useState(example.education.degree);
-  const [institute, setInstitue] = useState(example.education.institute);
-  const [dateStart, setEduStartDate] = useState(example.education.dateStart);
-  const [dateEnd, setEduEndDate] = useState(example.education.dateEnd);
-  const [phone, setPhone] = useState(example.contacts.phone);
-  const [email, setEmail] = useState(example.contacts.email);
-  const [expItems, setExpItems] = useState<ExperienceType[]>([
-    ...example.experience,
-  ]);
-  const toggleVariationRef = useRef([
+  const displayVariationRef = useRef([
     { view: 'expanded', toggle: '▼' },
     { view: 'collapsed', toggle: '▲' },
   ]);
+  const nameInput = useInputValue(example.title.name);
+  const titlePositionInput = useInputValue(example.title.position);
+  const titleFormDisplay = useToggle(displayVariationRef.current[0]);
+  const phoneInput = useInputValue(example.contacts.phone);
+  const emailInput = useInputValue(example.contacts.email);
+  const contactFormDisplay = useToggle(displayVariationRef.current[0]);
+  const degreeInput = useInputValue(example.education.degree);
+  const instituteInput = useInputValue(example.education.institute);
+  const eduDateStartInput = useInputValue(example.education.dateStart);
+  const eduDateEndInput = useInputValue(example.education.dateEnd);
+  const educationFormDisplay = useToggle(displayVariationRef.current[0]);
+  const experienceFormDisplay = useToggle(displayVariationRef.current[0]);
 
-  const [display, setDisplay] = useState({
-    'title-form': toggleVariationRef.current[0],
-    'contact-form': toggleVariationRef.current[0],
-    'education-form': toggleVariationRef.current[0],
-    'experience-form': toggleVariationRef.current[0],
-  });
+  const [expItems, setExpItems] = useState<ExperienceType[]>([
+    ...example.experience,
+  ]);
 
   const title: Title = {
-    name: name,
-    titlePosition: titlePosition,
-  };
-
-  const education: EducationType = {
-    degree: degree,
-    institute: institute,
-    dateStart: dateStart,
-    dateEnd: dateEnd,
+    name: nameInput.value,
+    titlePosition: titlePositionInput.value,
   };
 
   const contacts: Contacts = {
-    phone: phone,
-    email: email,
+    phone: phoneInput.value,
+    email: emailInput.value,
   };
 
-  function handleInputChanges(e) {
+  const education: EducationType = {
+    degree: degreeInput.value,
+    institute: instituteInput.value,
+    dateStart: eduDateStartInput.value,
+    dateEnd: eduDateEndInput.value,
+  };
+
+  function addExperience(e: React.SyntheticEvent) {
     e.preventDefault();
+    const next = expItems.length ? expItems[expItems.length - 1].id + 1 : 0;
 
-    // Display toggle changes
-    if (e.target.matches('[data-toggle]')) {
-      const subForm = e.target.closest('[data-form]').dataset.form;
-      const current = getValue(display, subForm);
-      const target = toggleVariationRef.current.find((value) => {
-        return value.view !== current.view;
-      });
+    if (next > 2) return;
+    const experienceNew: ExperienceType = {
+      id: next,
+      position: '',
+      company: '',
+      dateStart: '',
+      dateEnd: '',
+      roleDesc: '',
+    };
 
-      setDisplay({
-        ...display,
-        [subForm]: target,
-      });
-      return;
-    }
-    // Title changes
-    if (e.target.matches('#full_name')) {
-      setName(e.target.value);
-      return;
-    }
+    setExpItems((expItems) => expItems.concat(experienceNew));
+  }
 
-    if (e.target.matches('#position')) {
-      setTitle(e.target.value);
-      return;
-    }
-
-    // Contacts changes
-    if (e.target.matches('#phone')) {
-      setPhone(e.target.value);
-      return;
-    }
-
-    if (e.target.matches('#email')) {
-      setEmail(e.target.value);
-      return;
-    }
-
-    // Education changes
-    if (e.target.matches('#degree')) {
-      setDegree(e.target.value);
-      return;
-    }
-
-    if (e.target.matches('#institution')) {
-      setInstitue(e.target.value);
-      return;
-    }
-
-    if (e.target.matches('#date-start')) {
-      setEduStartDate(e.target.value);
-      return;
-    }
-
-    if (e.target.matches('#date-end')) {
-      setEduEndDate(e.target.value);
-      return;
-    }
-
-    // Experience changes
+  function handleExperienceInputChanges(e) {
+    e.preventDefault();
     const exp = e.target.closest('div[data-exp-num]');
     const expNum = parseInt(exp.dataset.expNum);
 
@@ -154,23 +110,6 @@ function App() {
     }
   }
 
-  function addExperience(e: React.SyntheticEvent) {
-    e.preventDefault();
-    const next = expItems.length ? expItems[expItems.length - 1].id + 1 : 0;
-
-    if (next > 2) return;
-    const experienceNew: ExperienceType = {
-      id: next,
-      position: '',
-      company: '',
-      dateStart: '',
-      dateEnd: '',
-      roleDesc: '',
-    };
-
-    setExpItems((expItems) => expItems.concat(experienceNew));
-  }
-
   return (
     <>
       <AppHeader></AppHeader>
@@ -178,26 +117,39 @@ function App() {
         <div id="resume-form-container">
           <TitleForm
             values={title}
-            display={display['title-form']}
-            onChange={handleInputChanges}
+            display={titleFormDisplay.value}
+            onChange={[
+              nameInput.onChange,
+              titlePositionInput.onChange,
+              titleFormDisplay.onClick,
+            ]}
           ></TitleForm>
           <ContactsForm
             values={contacts}
-            display={display['contact-form']}
-            onChange={handleInputChanges}
+            display={contactFormDisplay.value}
+            onChange={[
+              phoneInput.onChange,
+              emailInput.onChange,
+              contactFormDisplay.onClick,
+            ]}
           ></ContactsForm>
           <form data-form="education-form">
             <fieldset data-fieldset="education">
               <div data-form-header>
                 <span data-legend="edu">Educational Background</span>
-                <button data-toggle onClick={handleInputChanges}>
-                  {display['education-form'].toggle}
+                <button data-toggle onClick={educationFormDisplay.onClick}>
+                  {educationFormDisplay.value.toggle}
                 </button>
               </div>
               <EducationForm
                 values={education}
-                display={display['education-form']}
-                onChange={handleInputChanges}
+                display={educationFormDisplay.value}
+                onChange={[
+                  degreeInput.onChange,
+                  instituteInput.onChange,
+                  eduDateStartInput.onChange,
+                  eduDateEndInput.onChange,
+                ]}
               ></EducationForm>
             </fieldset>
           </form>
@@ -208,15 +160,15 @@ function App() {
                   Experience &#33;
                   <span className="tooltiptext">Upto 3 entries max</span>
                 </span>
-                <button data-toggle onClick={handleInputChanges}>
-                  {display['experience-form'].toggle}
+                <button data-toggle onClick={handleExperienceInputChanges}>
+                  {experienceFormDisplay.value.toggle}
                 </button>
               </div>
               {expItems.map((item) => (
                 <ExperienceForm
-                  display={display['experience-form']}
+                  display={experienceFormDisplay.value}
                   values={item}
-                  onChange={handleInputChanges}
+                  onChange={[handleExperienceInputChanges]}
                 ></ExperienceForm>
               ))}
               <div>
@@ -224,7 +176,7 @@ function App() {
                   id="add-exp-btn"
                   onClick={addExperience}
                   data-form-content
-                  className={display['experience-form'].view}
+                  className={experienceFormDisplay.value.view}
                 >
                   + Experience
                 </button>
