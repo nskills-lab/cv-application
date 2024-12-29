@@ -1,7 +1,7 @@
 import './styles/normalize.css';
 import './styles/App.css';
 import AppHeader from './components/AppHeader';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import example from './data/example-resume.json';
 import Resume from './components/Resume';
 import TitleForm from './components/heading/TitleForm';
@@ -29,16 +29,16 @@ function App() {
   const [expItems, setExpItems] = useState<ExperienceType[]>([
     ...example.experience,
   ]);
-  const toggleVariation = [
+  const toggleVariationRef = useRef([
     { view: 'expanded', toggle: '▼' },
     { view: 'collapsed', toggle: '▲' },
-  ];
+  ]);
 
   const [display, setDisplay] = useState({
-    'title-form': toggleVariation[0],
-    'contact-form': toggleVariation[0],
-    'education-form': toggleVariation[0],
-    'experience-form': toggleVariation[0],
+    'title-form': toggleVariationRef.current[0],
+    'contact-form': toggleVariationRef.current[0],
+    'education-form': toggleVariationRef.current[0],
+    'experience-form': toggleVariationRef.current[0],
   });
 
   const title: Title = {
@@ -65,7 +65,7 @@ function App() {
     if (e.target.matches('[data-toggle]')) {
       const subForm = e.target.closest('[data-form]').dataset.form;
       const current = getValue(display, subForm);
-      const target = toggleVariation.find((value) => {
+      const target = toggleVariationRef.current.find((value) => {
         return value.view !== current.view;
       });
 
