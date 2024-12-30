@@ -73,8 +73,6 @@ function App() {
   function handleExperienceInputChanges(e) {
     const targetExp = e.target.closest('div[data-exp-num]');
     const targetExperienceId = parseInt(targetExp.dataset.expNum);
-    console.log(targetExperienceId);
-    console.log(e.target.matches('#date-end-exp-current'));
 
     // Update target experience end date
     if (e.target.matches('#date-end-exp-current')) {
@@ -84,7 +82,6 @@ function App() {
           const checkboxEl = targetExp.querySelector(
             '#date-end-exp'
           ) as HTMLInputElement;
-          console.log(checkboxEl);
 
           if (isPresent) {
             item.dateEnd = 'Present';
