@@ -18,19 +18,19 @@ import {
 import { useDisplayRef, useInputValue, useToggle } from './customHooks';
 
 function App() {
-  const displayVariationRef = useDisplayRef();
+  const expandedView = useDisplayRef().current[0];
   const nameInput = useInputValue(example.title.name);
   const titlePositionInput = useInputValue(example.title.position);
-  const titleFormDisplay = useToggle(displayVariationRef.current[0]);
+  const titleFormDisplay = useToggle(expandedView);
   const phoneInput = useInputValue(example.contacts.phone);
   const emailInput = useInputValue(example.contacts.email);
-  const contactFormDisplay = useToggle(displayVariationRef.current[0]);
+  const contactFormDisplay = useToggle(expandedView);
   const degreeInput = useInputValue(example.education.degree);
   const instituteInput = useInputValue(example.education.institute);
   const eduDateStartInput = useInputValue(example.education.dateStart);
   const eduDateEndInput = useInputValue(example.education.dateEnd);
-  const educationFormDisplay = useToggle(displayVariationRef.current[0]);
-  const experienceFormDisplay = useToggle(displayVariationRef.current[0]);
+  const educationFormDisplay = useToggle(expandedView);
+  const experienceFormDisplay = useToggle(expandedView);
 
   const [expItems, setExpItems] = useState<ExperienceType[]>([
     ...example.experience,
@@ -141,26 +141,17 @@ function App() {
               contactFormDisplay.onClick,
             ]}
           ></ContactsForm>
-          <form data-form="education-form">
-            <fieldset data-fieldset="education">
-              <div data-form-header>
-                <span data-legend="edu">Educational Background</span>
-                <button data-toggle onClick={educationFormDisplay.onClick}>
-                  {educationFormDisplay.value.toggle}
-                </button>
-              </div>
-              <EducationForm
-                values={education}
-                display={educationFormDisplay.value}
-                onChange={[
-                  degreeInput.onChange,
-                  instituteInput.onChange,
-                  eduDateStartInput.onChange,
-                  eduDateEndInput.onChange,
-                ]}
-              ></EducationForm>
-            </fieldset>
-          </form>
+          <EducationForm
+            values={education}
+            display={educationFormDisplay.value}
+            onChange={[
+              degreeInput.onChange,
+              instituteInput.onChange,
+              eduDateStartInput.onChange,
+              eduDateEndInput.onChange,
+              educationFormDisplay.onClick,
+            ]}
+          ></EducationForm>
           <form data-form="experience-form">
             <fieldset data-fieldset="experience">
               <div data-form-header>
