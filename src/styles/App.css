@@ -355,6 +355,11 @@ input#date-end-exp-current {
   margin-left: 10px;
   width: 15px;
   height: 18px;
+  appearance: auto;
+}
+
+#exp-current-parent > label {
+  pointer-events: auto;
 }
 
 .collapsed {

@@ -71,19 +71,9 @@ function App() {
   }
 
   function handleExperienceInputChanges(e) {
-    e.preventDefault();
     const targetExperienceId = parseInt(
       e.target.closest('div[data-exp-num]').dataset.expNum
     );
-
-    // Delete target experience
-    if (e.target.matches('#del-exp-btn')) {
-      const updatedExp = expItems.filter(
-        (item: ExperienceType) => item.id !== targetExperienceId
-      );
-      setExpItems(updatedExp);
-      return;
-    }
 
     // Update target experience end date
     if (e.target.matches('#date-end-exp-current')) {
@@ -93,16 +83,25 @@ function App() {
           const checkboxEl = document.getElementById(
             'date-end-exp'
           ) as HTMLInputElement;
-          console.log(isPresent);
+
           if (isPresent) {
             item.dateEnd = 'Present';
-            // checkboxEl.disabled = isPresent;
-          } else {
-            checkboxEl.disabled = isPresent;
           }
+          checkboxEl.disabled = isPresent;
         }
         return item;
       });
+      setExpItems(updatedExp);
+
+      return;
+    }
+    e.preventDefault();
+
+    // Delete target experience
+    if (e.target.matches('#del-exp-btn')) {
+      const updatedExp = expItems.filter(
+        (item: ExperienceType) => item.id !== targetExperienceId
+      );
       setExpItems(updatedExp);
       return;
     }
