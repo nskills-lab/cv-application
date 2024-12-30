@@ -38,6 +38,7 @@ export default function Resume({
           <div id="experience-content">
             {experiences.map((item: ExperienceType) => (
               <Experience
+                key={item.id}
                 id={item.id}
                 position={item.position}
                 company={item.company}

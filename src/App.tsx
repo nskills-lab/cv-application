@@ -71,18 +71,20 @@ function App() {
   }
 
   function handleExperienceInputChanges(e) {
-    const targetExperienceId = parseInt(
-      e.target.closest('div[data-exp-num]').dataset.expNum
-    );
+    const targetExp = e.target.closest('div[data-exp-num]');
+    const targetExperienceId = parseInt(targetExp.dataset.expNum);
+    console.log(targetExperienceId);
+    console.log(e.target.matches('#date-end-exp-current'));
 
     // Update target experience end date
     if (e.target.matches('#date-end-exp-current')) {
       const updatedExp = [...expItems].map((item: ExperienceType) => {
         if (item.id === targetExperienceId) {
           const isPresent = e.target.checked;
-          const checkboxEl = document.getElementById(
-            'date-end-exp'
+          const checkboxEl = targetExp.querySelector(
+            '#date-end-exp'
           ) as HTMLInputElement;
+          console.log(checkboxEl);
 
           if (isPresent) {
             item.dateEnd = 'Present';
@@ -175,6 +177,7 @@ function App() {
               </div>
               {expItems.map((item) => (
                 <ExperienceForm
+                  key={item.id}
                   display={experienceFormDisplay.value}
                   values={item}
                   onChange={[handleExperienceInputChanges]}
