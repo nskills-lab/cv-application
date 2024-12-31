@@ -3,15 +3,15 @@
     "name": "Zaphod Beeblebrox",
     "position": "Ex-Galactic President"
   },
+  "contacts": {
+    "phone": "+000 - 000 - 0000",
+    "email": "president@galaxy.universe"
+  },
   "education": {
     "degree": "Masters in Confidence Trickster",
     "institute": "Betelgeusian University",
     "dateStart": 1901,
     "dateEnd": 1999
-  },
-  "contacts": {
-    "phone": "+000 - 000 - 0000",
-    "email": "president@galaxy.universe"
   },
   "experience": [
     {

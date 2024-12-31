@@ -1,57 +1,53 @@
 import './styles/normalize.css';
 import './styles/App.css';
 import AppHeader from './components/AppHeader';
-import { useState } from 'react';
+import { useState, useReducer } from 'react';
 import example from './data/example-resume.json';
 import Resume from './components/Resume';
 import TitleForm from './components/heading/TitleForm';
 import ContactsForm from './components/contacts/ContactsForm';
 import EducationForm from './components/education/EducationForm';
 import { ExperienceForm } from './components/experience/ExperienceForm';
-import {
-  Contacts,
-  EducationType,
-  ExperienceType,
-  setValue,
-  Title,
-} from './components/types';
-import { useDisplayRef, useInputValue, useToggle } from './customHooks';
+import { ExperienceType, setValue, ACTIONS } from './components/types';
+import { useDisplayRef, useToggle } from './customHooks';
+
+function resumeInputsReducer(state, action) {
+  switch (action.type) {
+    case ACTIONS.EDIT: {
+      return {
+        ...state,
+        ...{
+          [action.key]: { ...state[action.key], ...action.payload },
+        },
+      };
+    }
+
+    default:
+      return state;
+  }
+}
 
 function App() {
+  const [resumeInputs, dispatch] = useReducer(resumeInputsReducer, example);
   const expandedView = useDisplayRef().current[0];
-  const nameInput = useInputValue(example.title.name);
-  const titlePositionInput = useInputValue(example.title.position);
   const titleFormDisplay = useToggle(expandedView);
-  const phoneInput = useInputValue(example.contacts.phone);
-  const emailInput = useInputValue(example.contacts.email);
   const contactFormDisplay = useToggle(expandedView);
-  const degreeInput = useInputValue(example.education.degree);
-  const instituteInput = useInputValue(example.education.institute);
-  const eduDateStartInput = useInputValue(example.education.dateStart);
-  const eduDateEndInput = useInputValue(example.education.dateEnd);
   const educationFormDisplay = useToggle(expandedView);
   const experienceFormDisplay = useToggle(expandedView);
-
   const [expItems, setExpItems] = useState<ExperienceType[]>([
     ...example.experience,
   ]);
 
-  const title: Title = {
-    name: nameInput.value,
-    titlePosition: titlePositionInput.value,
-  };
-
-  const contacts: Contacts = {
-    phone: phoneInput.value,
-    email: emailInput.value,
-  };
-
-  const education: EducationType = {
-    degree: degreeInput.value,
-    institute: instituteInput.value,
-    dateStart: eduDateStartInput.value,
-    dateEnd: eduDateEndInput.value,
-  };
+  function handleEdit(e) {
+    const form = e.target.form[0].dataset.fieldset;
+    dispatch({
+      type: 'EDIT',
+      key: [form],
+      payload: {
+        [e.target.id]: e.target.value,
+      },
+    });
+  }
 
   function addExperience(e: React.SyntheticEvent) {
     e.preventDefault();
@@ -124,33 +120,19 @@ function App() {
       <div id="resume-container">
         <div id="resume-form-container">
           <TitleForm
-            values={title}
+            values={resumeInputs.title}
             display={titleFormDisplay.value}
-            onChange={[
-              nameInput.onChange,
-              titlePositionInput.onChange,
-              titleFormDisplay.onClick,
-            ]}
+            onChange={[handleEdit, titleFormDisplay.onClick]}
           ></TitleForm>
           <ContactsForm
-            values={contacts}
+            values={resumeInputs.contacts}
             display={contactFormDisplay.value}
-            onChange={[
-              phoneInput.onChange,
-              emailInput.onChange,
-              contactFormDisplay.onClick,
-            ]}
+            onChange={[handleEdit, contactFormDisplay.onClick]}
           ></ContactsForm>
           <EducationForm
-            values={education}
+            values={resumeInputs.education}
             display={educationFormDisplay.value}
-            onChange={[
-              degreeInput.onChange,
-              instituteInput.onChange,
-              eduDateStartInput.onChange,
-              eduDateEndInput.onChange,
-              educationFormDisplay.onClick,
-            ]}
+            onChange={[handleEdit, educationFormDisplay.onClick]}
           ></EducationForm>
           <form data-form="experience-form">
             <fieldset data-fieldset="experience">
@@ -186,9 +168,9 @@ function App() {
         </div>
 
         <Resume
-          title={title}
-          contacts={contacts}
-          education={education}
+          title={resumeInputs.title}
+          contacts={resumeInputs.contacts}
+          education={resumeInputs.education}
           experiences={expItems}
         ></Resume>
       </div>

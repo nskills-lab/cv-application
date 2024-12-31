@@ -1,7 +1,8 @@
 import { Props, Title } from '../types';
 
 export default function TitleForm({ values, display, onChange }: Props<Title>) {
-  const [nameOnChange, positionOnChange, displayOnClick] = onChange;
+  const [handleEdit, displayOnClick] = onChange;
+
   return (
     <form data-form="title-form">
       <fieldset data-fieldset="title">
@@ -12,19 +13,19 @@ export default function TitleForm({ values, display, onChange }: Props<Title>) {
           </button>
         </div>
         <div data-form-content className={display.view}>
-          <label htmlFor="full_name">Full Name </label>
+          <label htmlFor="name">Full Name </label>
           <input
             type="text"
-            id="full_name"
+            id="name"
             value={values.name}
-            onChange={nameOnChange}
+            onChange={handleEdit}
           />
           <label htmlFor="position">Position </label>
           <input
             type="text"
             id="position"
-            value={values.titlePosition}
-            onChange={positionOnChange}
+            value={values.position}
+            onChange={handleEdit}
           />
         </div>
       </fieldset>

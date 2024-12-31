@@ -5,13 +5,7 @@ export default function EducationForm({
   display,
   onChange,
 }: Props<EducationType>) {
-  const [
-    degreeOnChange,
-    instituteOnChange,
-    dateStartOnChange,
-    dateEndOnChange,
-    formDisplayOnClick,
-  ] = onChange;
+  const [handleEdit, formDisplayOnClick] = onChange;
   return (
     <form data-form="education-form">
       <fieldset data-fieldset="education">
@@ -27,37 +21,37 @@ export default function EducationForm({
             type="text"
             id="degree"
             value={values.degree}
-            onChange={degreeOnChange}
+            onChange={handleEdit}
           />
 
-          <label htmlFor="institution">Institution </label>
+          <label htmlFor="institute">Institution </label>
           <input
             type="text"
-            id="institution"
+            id="institute"
             value={values.institute}
-            onChange={instituteOnChange}
+            onChange={handleEdit}
           />
 
-          <label htmlFor="date-start">Start </label>
+          <label htmlFor="dateStart">Start </label>
           <input
             type="number"
-            id="date-start"
+            id="dateStart"
             min={1900}
             max={2900}
             step={1}
             value={values.dateStart}
-            onChange={dateStartOnChange}
+            onChange={handleEdit}
           />
 
-          <label htmlFor="date-end">End </label>
+          <label htmlFor="dateEnd">End </label>
           <input
             type="number"
-            id="date-end"
+            id="dateEnd"
             min={1900}
             max={2900}
             step={1}
             value={values.dateEnd}
-            onChange={dateEndOnChange}
+            onChange={handleEdit}
           />
           <br />
         </div>

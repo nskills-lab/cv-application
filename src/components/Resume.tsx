@@ -30,7 +30,7 @@ export default function Resume({
       <div id="rc-main">
         <TitleSection
           name={title.name}
-          titlePosition={title.titlePosition}
+          position={title.position}
         ></TitleSection>
         <div id="experience-container">
           <span id="exp-section-title">Experience</span>

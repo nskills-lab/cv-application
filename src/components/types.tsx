@@ -1,5 +1,10 @@
 import { ReactNode } from 'react';
 
+export type Title = {
+  name: string;
+  position: string;
+};
+
 export type Contacts = {
   phone: string;
   email: string;
@@ -10,11 +15,6 @@ export type EducationType = {
   institute: string;
   dateStart: number | string;
   dateEnd: number;
-};
-
-export type Title = {
-  name: string;
-  titlePosition: string;
 };
 
 export type ExperienceType = {
@@ -62,3 +62,10 @@ export function getValue<T>(obj: T, key: keyof T) {
 export function setValue<T, K extends keyof T>(items: T, key: K, value: T[K]) {
   items[key] = value;
 }
+
+export const ACTIONS = {
+  EDIT: 'EDIT',
+  ADD: 'ADD',
+  DELETE: 'DELETE',
+  TOGGLE: 'TOGGLE',
+};
