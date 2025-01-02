@@ -62,11 +62,20 @@ function App() {
       dateEnd: '',
       roleDesc: '',
     };
-
     setExpItems((expItems) => expItems.concat(experienceNew));
   }
 
-  function handleExperienceInputChanges(e) {
+  function deleteExperience(e) {
+    e.preventDefault();
+    const targetExp = e.target.closest('div[data-exp-num]');
+    const targetExperienceId = parseInt(targetExp.dataset.expNum);
+    const updatedExp = expItems.filter(
+      (item: ExperienceType) => item.id !== targetExperienceId
+    );
+    setExpItems(updatedExp);
+  }
+
+  function editExperience(e) {
     const targetExp = e.target.closest('div[data-exp-num]');
     const targetExperienceId = parseInt(targetExp.dataset.expNum);
 
@@ -92,16 +101,7 @@ function App() {
     }
     e.preventDefault();
 
-    // Delete target experience
-    if (e.target.matches('#del-exp-btn')) {
-      const updatedExp = expItems.filter(
-        (item: ExperienceType) => item.id !== targetExperienceId
-      );
-      setExpItems(updatedExp);
-      return;
-    }
-
-    // Update target experience
+    // Update target experience other fields
     setExpItems((expItems) => {
       return [...expItems].map((item: ExperienceType) => {
         if (item.id === targetExperienceId) {
@@ -150,7 +150,7 @@ function App() {
                   key={item.id}
                   display={experienceFormDisplay.value}
                   values={item}
-                  onChange={[handleExperienceInputChanges]}
+                  onChange={[editExperience, deleteExperience]}
                 ></ExperienceForm>
               ))}
               <div>

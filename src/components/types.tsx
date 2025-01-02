@@ -65,7 +65,4 @@ export function setValue<T, K extends keyof T>(items: T, key: K, value: T[K]) {
 
 export const ACTIONS = {
   EDIT: 'EDIT',
-  ADD: 'ADD',
-  DELETE: 'DELETE',
-  TOGGLE: 'TOGGLE',
 };

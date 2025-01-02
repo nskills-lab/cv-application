@@ -5,7 +5,7 @@ export function ExperienceForm({
   display,
   onChange,
 }: Props<ExperienceType>) {
-  const [experienceOnChange] = onChange;
+  const [experienceOnChange, deleteExperience] = onChange;
   return (
     <div data-exp-num={values.id} data-form-content className={display.view}>
       <label htmlFor="job-position">Job Position </label>
@@ -71,7 +71,7 @@ export function ExperienceForm({
       <br />
       <div>
         {' '}
-        <button id="del-exp-btn" onClick={experienceOnChange}>
+        <button id="del-exp-btn" onClick={deleteExperience}>
           Delete
         </button>
       </div>
