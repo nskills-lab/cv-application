@@ -1,9 +1,9 @@
-import ContactsSection from './contacts/ContactsSection';
-import Education from './education/Education';
-import EducationSection from './education/EducationSection';
-import Experience from './experience/Experience';
-import TitleSection from './heading/TitleSection';
-import { ExperienceType, ResumeType } from './types';
+import ContactsSection from '../contacts/ContactsSection';
+import Education from '../education/Education';
+import EducationSection from '../education/EducationSection';
+import Experience from '../experience/Experience';
+import TitleSection from '../heading/TitleSection';
+import { ExperienceType, ResumeType } from '../types';
 
 export default function Resume({
   title,

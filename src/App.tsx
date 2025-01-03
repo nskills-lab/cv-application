@@ -1,15 +1,14 @@
 import './styles/normalize.css';
 import './styles/App.css';
 import AppHeader from './components/AppHeader';
-import { useReducer } from 'react';
+import { createContext, useReducer } from 'react';
 import example from './data/example-resume.json';
-import Resume from './components/Resume';
-import TitleForm from './components/heading/TitleForm';
-import ContactsForm from './components/contacts/ContactsForm';
-import EducationForm from './components/education/EducationForm';
-import { ExperienceForm } from './components/experience/ExperienceForm';
+import Resume from './components/resume/Resume';
 import { ExperienceType, ACTIONS } from './components/types';
 import { useDisplayRef, useToggle } from './customHooks';
+import { ResumeForm } from './components/resume/ResumeForm';
+
+export const ResumeFormContext = createContext({});
 
 function resumeInputsReducer(state, action) {
   console.log(state);
@@ -149,55 +148,21 @@ function App() {
     <>
       <AppHeader></AppHeader>
       <div id="resume-container">
-        <div id="resume-form-container">
-          <TitleForm
-            values={resumeInputs.title}
-            display={titleFormDisplay.value}
-            onChange={[handleEdit, titleFormDisplay.onClick]}
-          ></TitleForm>
-          <ContactsForm
-            values={resumeInputs.contacts}
-            display={contactFormDisplay.value}
-            onChange={[handleEdit, contactFormDisplay.onClick]}
-          ></ContactsForm>
-          <EducationForm
-            values={resumeInputs.education}
-            display={educationFormDisplay.value}
-            onChange={[handleEdit, educationFormDisplay.onClick]}
-          ></EducationForm>
-          <form data-form="experience-form">
-            <fieldset data-fieldset="experience">
-              <div data-form-header>
-                <span data-legend="edu" className="tooltip">
-                  Experience &#33;
-                  <span className="tooltiptext">Upto 3 entries max</span>
-                </span>
-                <button data-toggle onClick={experienceFormDisplay.onClick}>
-                  {experienceFormDisplay.value.toggle}
-                </button>
-              </div>
-              {resumeInputs.experience.map((item: ExperienceType) => (
-                <ExperienceForm
-                  key={item.id}
-                  display={experienceFormDisplay.value}
-                  values={item}
-                  onChange={[handleExpEdit, handleDelete]}
-                ></ExperienceForm>
-              ))}
-              <div>
-                <button
-                  id="add-exp-btn"
-                  onClick={handleAdd}
-                  data-form-content
-                  className={experienceFormDisplay.value.view}
-                >
-                  + Experience
-                </button>
-              </div>
-            </fieldset>
-          </form>
-        </div>
-
+        <ResumeFormContext.Provider
+          value={{
+            resumeInputs,
+            handleEdit,
+            handleAdd,
+            handleDelete,
+            handleExpEdit,
+            titleFormDisplay,
+            contactFormDisplay,
+            experienceFormDisplay,
+            educationFormDisplay,
+          }}
+        >
+          <ResumeForm></ResumeForm>
+        </ResumeFormContext.Provider>
         <Resume
           title={resumeInputs.title}
           contacts={resumeInputs.contacts}
