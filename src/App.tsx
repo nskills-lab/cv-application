@@ -1,17 +1,19 @@
 import './styles/normalize.css';
 import './styles/App.css';
 import AppHeader from './components/AppHeader';
-import { useState, useReducer } from 'react';
+import { useReducer } from 'react';
 import example from './data/example-resume.json';
 import Resume from './components/Resume';
 import TitleForm from './components/heading/TitleForm';
 import ContactsForm from './components/contacts/ContactsForm';
 import EducationForm from './components/education/EducationForm';
 import { ExperienceForm } from './components/experience/ExperienceForm';
-import { ExperienceType, setValue, ACTIONS } from './components/types';
+import { ExperienceType, ACTIONS } from './components/types';
 import { useDisplayRef, useToggle } from './customHooks';
 
 function resumeInputsReducer(state, action) {
+  console.log(state);
+  console.log(action);
   switch (action.type) {
     case ACTIONS.EDIT: {
       return {
@@ -20,6 +22,47 @@ function resumeInputsReducer(state, action) {
           [action.key]: { ...state[action.key], ...action.payload },
         },
       };
+    }
+
+    case ACTIONS.DELETE: {
+      return {
+        ...state,
+        ...{
+          [action.key]: state[action.key].filter(
+            (item: ExperienceType) => item.id !== action.payload.id
+          ),
+        },
+      };
+    }
+
+    case ACTIONS.ADD: {
+      return {
+        ...state,
+        ...{
+          [action.key]: [...state[action.key], ...action.payload],
+        },
+      };
+    }
+
+    case ACTIONS.EXP_EDIT: {
+      const updated = state[action.key].map((item: ExperienceType) => {
+        if (item.id === action.id) {
+          const updatedObj = { ...item, ...action.payload };
+          console.log(updatedObj);
+          return updatedObj;
+        }
+        return item;
+      });
+
+      const newPayload = {
+        ...state,
+        ...{
+          [action.key]: updated,
+        },
+      };
+
+      console.log(newPayload);
+      return newPayload;
     }
 
     default:
@@ -34,14 +77,11 @@ function App() {
   const contactFormDisplay = useToggle(expandedView);
   const educationFormDisplay = useToggle(expandedView);
   const experienceFormDisplay = useToggle(expandedView);
-  const [expItems, setExpItems] = useState<ExperienceType[]>([
-    ...example.experience,
-  ]);
 
   function handleEdit(e) {
     const form = e.target.form[0].dataset.fieldset;
     dispatch({
-      type: 'EDIT',
+      type: ACTIONS.EDIT,
       key: [form],
       payload: {
         [e.target.id]: e.target.value,
@@ -49,68 +89,59 @@ function App() {
     });
   }
 
-  function addExperience(e: React.SyntheticEvent) {
+  function handleAdd(e) {
     e.preventDefault();
-    const next = expItems.length ? expItems[expItems.length - 1].id + 1 : 0;
+    const form = e.target.form[0].dataset.fieldset;
+    console.log(resumeInputs.experience[resumeInputs.experience.length - 1]);
+    const next = resumeInputs.experience.length
+      ? resumeInputs.experience[resumeInputs.experience.length - 1].id + 1
+      : 0;
 
     if (next > 2) return;
     const experienceNew: ExperienceType = {
       id: next,
-      position: '',
+      jobPosition: '',
       company: '',
-      dateStart: '',
-      dateEnd: '',
+      dateStartExp: '',
+      dateEndExp: '',
       roleDesc: '',
     };
-    setExpItems((expItems) => expItems.concat(experienceNew));
+    dispatch({
+      type: ACTIONS.ADD,
+      key: [form],
+      payload: [experienceNew],
+    });
   }
 
-  function deleteExperience(e) {
+  function handleDelete(e) {
     e.preventDefault();
+    const form = e.target.form[0].dataset.fieldset;
     const targetExp = e.target.closest('div[data-exp-num]');
     const targetExperienceId = parseInt(targetExp.dataset.expNum);
-    const updatedExp = expItems.filter(
-      (item: ExperienceType) => item.id !== targetExperienceId
-    );
-    setExpItems(updatedExp);
+    dispatch({
+      type: ACTIONS.DELETE,
+      key: [form],
+      payload: {
+        id: targetExperienceId,
+      },
+    });
   }
 
-  function editExperience(e) {
-    const targetExp = e.target.closest('div[data-exp-num]');
-    const targetExperienceId = parseInt(targetExp.dataset.expNum);
-
-    // Update target experience end date
-    if (e.target.matches('#date-end-exp-current')) {
-      const updatedExp = [...expItems].map((item: ExperienceType) => {
-        if (item.id === targetExperienceId) {
-          const isPresent = e.target.checked;
-          const checkboxEl = targetExp.querySelector(
-            '#date-end-exp'
-          ) as HTMLInputElement;
-
-          if (isPresent) {
-            item.dateEnd = 'Present';
-          }
-          checkboxEl.disabled = isPresent;
-        }
-        return item;
-      });
-      setExpItems(updatedExp);
-
-      return;
-    }
+  function handleExpEdit(e) {
     e.preventDefault();
+    const form = e.target.form[0].dataset.fieldset;
+    const targetExp = e.target.closest('div[data-exp-num]');
+    console.log(targetExp);
+    const targetExperienceId = parseInt(targetExp.dataset.expNum);
+    console.log(e.target);
 
-    // Update target experience other fields
-    setExpItems((expItems) => {
-      return [...expItems].map((item: ExperienceType) => {
-        if (item.id === targetExperienceId) {
-          const key: keyof ExperienceType = e.target.dataset.expItem;
-          setValue(item, key, e.target.value);
-        }
-
-        return item;
-      });
+    dispatch({
+      type: ACTIONS.EXP_EDIT,
+      key: [form],
+      id: targetExperienceId,
+      payload: {
+        [e.target.id]: e.target.value,
+      },
     });
   }
 
@@ -145,18 +176,18 @@ function App() {
                   {experienceFormDisplay.value.toggle}
                 </button>
               </div>
-              {expItems.map((item) => (
+              {resumeInputs.experience.map((item: ExperienceType) => (
                 <ExperienceForm
                   key={item.id}
                   display={experienceFormDisplay.value}
                   values={item}
-                  onChange={[editExperience, deleteExperience]}
+                  onChange={[handleExpEdit, handleDelete]}
                 ></ExperienceForm>
               ))}
               <div>
                 <button
                   id="add-exp-btn"
-                  onClick={addExperience}
+                  onClick={handleAdd}
                   data-form-content
                   className={experienceFormDisplay.value.view}
                 >
@@ -171,7 +202,7 @@ function App() {
           title={resumeInputs.title}
           contacts={resumeInputs.contacts}
           education={resumeInputs.education}
-          experiences={expItems}
+          experiences={resumeInputs.experience}
         ></Resume>
       </div>
     </>

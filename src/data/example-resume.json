@@ -16,18 +16,18 @@
   "experience": [
     {
       "id": 0,
-      "position": "Part-time Investigator",
+      "jobPosition": "Part-time Investigator",
       "company": "Really Wild Stuff Corporation",
-      "dateStart": "2019-01",
-      "dateEnd": "2024-11",
+      "dateStartExp": "2019-01",
+      "dateEndExp": "2024-11",
       "roleDesc": "Zaphod is hedonistic and irresponsible, self-centered almost to the point of solipsism, and often extremely insensitive to the feelings of those around him. "
     },
     {
       "id": 1,
       "company": "The Beeblebrox Salvage",
-      "position": "Inventor",
-      "dateStart": "2000-01",
-      "dateEnd": "2018-11",
+      "jobPosition": "Inventor",
+      "dateStartExp": "2000-01",
+      "dateEndExp": "2018-11",
       "roleDesc": "Invented the Pan Galactic Gargle Blaster. Zaphod is nevertheless quite charismatic which causes many characters to ignore his other flaws."
     }
   ]

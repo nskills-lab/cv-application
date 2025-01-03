@@ -5,16 +5,17 @@ export function ExperienceForm({
   display,
   onChange,
 }: Props<ExperienceType>) {
-  const [experienceOnChange, deleteExperience] = onChange;
+  const [handleExpEdit, deleteExperience] = onChange;
+  console.log(values);
   return (
     <div data-exp-num={values.id} data-form-content className={display.view}>
-      <label htmlFor="job-position">Job Position </label>
+      <label htmlFor="jobPosition">Job Position </label>
       <input
         type="text"
-        id="job-position"
-        data-exp-item="position"
-        value={values.position}
-        onChange={experienceOnChange}
+        id="jobPosition"
+        data-exp-item="jobPosition"
+        value={values.jobPosition}
+        onChange={handleExpEdit}
       />
 
       <label htmlFor="company">Company</label>
@@ -23,29 +24,29 @@ export function ExperienceForm({
         id="company"
         data-exp-item="company"
         value={values.company}
-        onChange={experienceOnChange}
+        onChange={handleExpEdit}
       />
 
-      <label htmlFor="date-start-exp">Start </label>
+      <label htmlFor="dateStartExpp">Start </label>
       <input
         type="month"
-        id="date-start-exp"
-        name="date-start-exp"
-        data-exp-item="dateStart"
-        value={values.dateStart}
-        onChange={experienceOnChange}
+        id="dateStartExp"
+        name="dateStartExp"
+        data-exp-item="dateStartExp"
+        value={values.dateStartExp}
+        onChange={handleExpEdit}
       />
 
-      <label htmlFor="date-end-exp">End </label>
+      <label htmlFor="dateEndExp">End </label>
       <input
         type="month"
-        id="date-end-exp"
-        name="date-end-exp"
-        data-exp-item="dateEnd"
+        id="dateEndExp"
+        name="dateEndExp"
+        data-exp-item="dateEndExp"
         min="1900-01"
         max="2100-12"
-        value={values.dateEnd}
-        onChange={experienceOnChange}
+        value={values.dateEndExp}
+        onChange={handleExpEdit}
       />
       <div id="exp-current-parent">
         <label htmlFor="date-end-exp-current">
@@ -54,19 +55,19 @@ export function ExperienceForm({
         <input
           type="checkbox"
           id="date-end-exp-current"
-          onChange={experienceOnChange}
+          onChange={handleExpEdit}
         />
       </div>
 
-      <label htmlFor="job-desc">Responsibilities </label>
+      <label htmlFor="roleDesc">Responsibilities </label>
       <textarea
-        id="job-desc"
+        id="roleDesc"
         data-exp-item="roleDesc"
         maxLength={500}
         cols={50}
         rows={10}
         value={values.roleDesc}
-        onChange={experienceOnChange}
+        onChange={handleExpEdit}
       />
       <br />
       <div>

@@ -19,10 +19,10 @@ export type EducationType = {
 
 export type ExperienceType = {
   id: number;
-  position: string;
+  jobPosition: string;
   company: string;
-  dateStart: string;
-  dateEnd: string;
+  dateStartExp: string;
+  dateEndExp: string;
   roleDesc: string;
 };
 
@@ -65,4 +65,7 @@ export function setValue<T, K extends keyof T>(items: T, key: K, value: T[K]) {
 
 export const ACTIONS = {
   EDIT: 'EDIT',
+  DELETE: 'DELETE',
+  ADD: 'ADD',
+  EXP_EDIT: 'EXP_EDIT',
 };

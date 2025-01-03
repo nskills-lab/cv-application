@@ -40,10 +40,10 @@ export default function Resume({
               <Experience
                 key={item.id}
                 id={item.id}
-                position={item.position}
+                jobPosition={item.jobPosition}
                 company={item.company}
-                dateStart={item.dateStart}
-                dateEnd={item.dateEnd}
+                dateStartExp={item.dateStartExp}
+                dateEndExp={item.dateEndExp}
                 roleDesc={item.roleDesc}
               ></Experience>
             ))}
