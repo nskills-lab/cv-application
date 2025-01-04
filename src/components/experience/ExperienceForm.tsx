@@ -49,14 +49,8 @@ export function ExperienceForm({
         onChange={handleExpEdit}
       />
       <div id="exp-current-parent">
-        <label htmlFor="date-end-exp-current">
-          I'm currently working here{' '}
-        </label>
-        <input
-          type="checkbox"
-          id="date-end-exp-current"
-          onChange={handleExpEdit}
-        />
+        <label htmlFor="dateEndPresent">I'm currently working here </label>
+        <input type="checkbox" id="dateEndPresent" onChange={handleExpEdit} />
       </div>
 
       <label htmlFor="roleDesc">Responsibilities </label>

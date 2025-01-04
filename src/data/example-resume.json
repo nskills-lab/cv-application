@@ -20,6 +20,7 @@
       "company": "Really Wild Stuff Corporation",
       "dateStartExp": "2019-01",
       "dateEndExp": "2024-11",
+      "dateEndPresent": false,
       "roleDesc": "Zaphod is hedonistic and irresponsible, self-centered almost to the point of solipsism, and often extremely insensitive to the feelings of those around him. "
     },
     {
@@ -28,6 +29,7 @@
       "jobPosition": "Inventor",
       "dateStartExp": "2000-01",
       "dateEndExp": "2018-11",
+      "dateEndPresent": false,
       "roleDesc": "Invented the Pan Galactic Gargle Blaster. Zaphod is nevertheless quite charismatic which causes many characters to ignore his other flaws."
     }
   ]

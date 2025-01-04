@@ -4,15 +4,26 @@ import AppHeader from './components/AppHeader';
 import { createContext, useReducer } from 'react';
 import example from './data/example-resume.json';
 import Resume from './components/resume/Resume';
-import { ExperienceType, ACTIONS } from './components/types';
+import { ExperienceType, ACTIONS, ResumeContextType } from './components/types';
 import { useDisplayRef, useToggle } from './customHooks';
 import { ResumeForm } from './components/resume/ResumeForm';
 
-export const ResumeFormContext = createContext({});
+const defaultContext: ResumeContextType = {
+  resumeInputs: example,
+  handleEdit: (e) => {},
+  handleAdd: (e) => {},
+  handleDelete: (e) => {},
+  handleExpEdit: (e) => {},
+  titleFormDisplay: {},
+  contactFormDisplay: {},
+  experienceFormDisplay: {},
+  educationFormDisplay: {},
+};
+
+export const ResumeFormContext =
+  createContext<ResumeContextType>(defaultContext);
 
 function resumeInputsReducer(state, action) {
-  console.log(state);
-  console.log(action);
   switch (action.type) {
     case ACTIONS.EDIT: {
       return {
@@ -47,21 +58,17 @@ function resumeInputsReducer(state, action) {
       const updated = state[action.key].map((item: ExperienceType) => {
         if (item.id === action.id) {
           const updatedObj = { ...item, ...action.payload };
-          console.log(updatedObj);
           return updatedObj;
         }
         return item;
       });
 
-      const newPayload = {
+      return {
         ...state,
         ...{
           [action.key]: updated,
         },
       };
-
-      console.log(newPayload);
-      return newPayload;
     }
 
     default:
@@ -91,7 +98,6 @@ function App() {
   function handleAdd(e) {
     e.preventDefault();
     const form = e.target.form[0].dataset.fieldset;
-    console.log(resumeInputs.experience[resumeInputs.experience.length - 1]);
     const next = resumeInputs.experience.length
       ? resumeInputs.experience[resumeInputs.experience.length - 1].id + 1
       : 0;
@@ -127,13 +133,34 @@ function App() {
   }
 
   function handleExpEdit(e) {
-    e.preventDefault();
     const form = e.target.form[0].dataset.fieldset;
     const targetExp = e.target.closest('div[data-exp-num]');
-    console.log(targetExp);
     const targetExperienceId = parseInt(targetExp.dataset.expNum);
-    console.log(e.target);
 
+    if (e.target.id === 'dateEndPresent') {
+      const isPresent = e.target.checked;
+      const endDate = targetExp.querySelector(
+        '#dateEndExp'
+      ) as HTMLInputElement;
+      endDate.disabled = isPresent;
+      const payload = {
+        [e.target.id]: isPresent,
+      };
+
+      if (isPresent) {
+        payload['dateEndExp'] = 'Present';
+      }
+
+      dispatch({
+        type: ACTIONS.EXP_EDIT,
+        key: [form],
+        id: targetExperienceId,
+        payload: payload,
+      });
+      return;
+    }
+
+    e.preventDefault();
     dispatch({
       type: ACTIONS.EXP_EDIT,
       key: [form],

@@ -69,3 +69,15 @@ export const ACTIONS = {
   ADD: 'ADD',
   EXP_EDIT: 'EXP_EDIT',
 };
+
+export interface ResumeContextType {
+  resumeInputs: object;
+  handleEdit: (e) => void;
+  handleAdd: (e) => void;
+  handleDelete: (e) => void;
+  handleExpEdit: (e) => void;
+  titleFormDisplay: object;
+  contactFormDisplay: object;
+  experienceFormDisplay: object;
+  educationFormDisplay: object;
+}
