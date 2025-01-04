@@ -71,13 +71,42 @@ export const ACTIONS = {
 };
 
 export interface ResumeContextType {
-  resumeInputs: object;
+  resumeInputs: {
+    title: Title;
+    contacts: Contacts;
+    education: EducationType;
+    experience: Array<ExperienceType>;
+  };
   handleEdit: (e) => void;
   handleAdd: (e) => void;
   handleDelete: (e) => void;
   handleExpEdit: (e) => void;
-  titleFormDisplay: object;
-  contactFormDisplay: object;
-  experienceFormDisplay: object;
-  educationFormDisplay: object;
+  titleFormDisplay: {
+    value: {
+      view: string;
+      toggle: string;
+    };
+    onClick: HandleFunction;
+  };
+  contactFormDisplay: {
+    value: {
+      view: string;
+      toggle: string;
+    };
+    onClick: HandleFunction;
+  };
+  experienceFormDisplay: {
+    value: {
+      view: string;
+      toggle: string;
+    };
+    onClick: HandleFunction;
+  };
+  educationFormDisplay: {
+    value: {
+      view: string;
+      toggle: string;
+    };
+    onClick: HandleFunction;
+  };
 }
